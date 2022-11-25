@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.LoginTechnicianCustomer">
+    tools:context=".view.LoginTechnicianCustomerActivity">
 
     <!-- Group 6 -->
 
@@ -23,7 +23,7 @@
         android:layout_height="514dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/rectangle_1"
+        android:background="@drawable/rectangle_purple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
