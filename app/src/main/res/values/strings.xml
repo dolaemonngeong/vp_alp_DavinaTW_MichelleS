@@ -3,5 +3,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="log_in_as_t">Log In as \nTechnician</string>
-    <string name="new_here_re">New Here? Register Now</string>
+    <string name="new_here_re">New Here?</string>
+    <string name="register_no">
+
+Register Now
+</string>
+
+
 </resources>

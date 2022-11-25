@@ -87,7 +87,7 @@
 
     <TextView
         android:id="@+id/new_here_re"
-        android:layout_width="140dp"
+        android:layout_width="wrap_content"
         android:layout_height="16dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -98,5 +98,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rectangle_1" />
+
+    <TextView
+        android:id="@+id/register_no"
+        android:layout_width="76dp"
+        android:layout_height="16dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="8dp"
+        android:gravity="top"
+        android:text="@string/register_no"
+        android:textAppearance="@style/register_no"
+        app:layout_constraintBottom_toBottomOf="@+id/new_here_re"
+        app:layout_constraintStart_toEndOf="@+id/new_here_re"
+        app:layout_constraintTop_toTopOf="@+id/new_here_re" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
