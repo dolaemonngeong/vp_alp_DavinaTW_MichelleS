@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_technician">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_technician"
+    app:startDestination="@id/technicianHomeFragment">
 
+    <fragment
+        android:id="@+id/technicianHomeFragment"
+        android:name="com.uc.alp_vp_acleaning.view.TechnicianHomeFragment"
+        android:label="fragment_technician_home"
+        tools:layout="@layout/fragment_technician_home" />
 </navigation>

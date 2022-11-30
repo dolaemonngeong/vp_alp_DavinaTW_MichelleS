@@ -7,58 +7,148 @@
     tools:context=".view.TechnicianHomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <RadioButton
-            android:id="@+id/pending_rb"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/btn_segmented_left"
-            android:button="@android:color/transparent"
-            android:gravity="center"
-            android:padding="8dp"
-            android:text="Pending"
-            android:textColor="@drawable/txt_segmented" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <RadioButton
-            android:id="@+id/ongoing_rb"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/btn_segmented_center"
-            android:button="@android:color/transparent"
-            android:gravity="center"
-            android:padding="8dp"
-            android:text="On-going"
-            android:textColor="@drawable/txt_segmented" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <RadioButton
-            android:id="@+id/completed_rb"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/btn_segmented_right"
-            android:button="@android:color/transparent"
-            android:gravity="center"
-            android:padding="8dp"
-            android:text="Completed"
-            android:textColor="@drawable/txt_segmented" />
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar2"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@color/white"
+                    android:minHeight="?attr/actionBarSize"
+                    android:theme="?attr/actionBarTheme"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    </RadioGroup>
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:clickable="true"
+                    android:src="@drawable/burger"
+                    app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/toolbar2"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/source_sans_pro_bold"
+                    android:text="Welcome!"
+                    android:textColor="#000000"
+                    android:textSize="40sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/source_sans_pro_bold"
+                    android:text="Cha Eun Woo"
+                    android:textColor="#3E3C97"
+                    android:textSize="40sp"
+                    app:layout_constraintStart_toStartOf="@id/textView"
+                    app:layout_constraintTop_toBottomOf="@id/textView" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/source_sans_pro_bold"
+                    android:text="Orders"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="@id/textView4"
+                    app:layout_constraintTop_toBottomOf="@id/textView4" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    app:layout_constraintStart_toStartOf="@id/textView5"
+                    app:layout_constraintTop_toBottomOf="@id/textView5" >
+
+                    <RadioButton
+                        android:id="@+id/pending_rb"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_segmented_left"
+                        android:button="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="Pending"
+                        android:textColor="@drawable/txt_segmented" />
+
+                    <RadioButton
+                        android:id="@+id/ongoing_rb"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_segmented_center"
+                        android:button="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="On-going"
+                        android:textColor="@drawable/txt_segmented" />
+
+                    <RadioButton
+                        android:id="@+id/completed_rb"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_segmented_right"
+                        android:button="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="Completed"
+                        android:textColor="@drawable/txt_segmented" />
+
+                </RadioGroup>
+
+                <ListView
+                    android:id="@+id/list_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    app:layout_constraintStart_toStartOf="@id/radioGroup"
+                    app:layout_constraintTop_toBottomOf="@id/radioGroup" >
+
+                </ListView>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/list_order" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
