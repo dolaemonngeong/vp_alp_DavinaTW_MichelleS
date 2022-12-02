@@ -10,4 +10,9 @@
         android:name="com.uc.alp_vp_acleaning.view.TechnicianHomeFragment"
         android:label="fragment_technician_home"
         tools:layout="@layout/fragment_technician_home" />
+    <fragment
+        android:id="@+id/technicianProfileFragment"
+        android:name="com.uc.alp_vp_acleaning.view.TechnicianProfileFragment"
+        android:label="fragment_technician_profile"
+        tools:layout="@layout/fragment_technician_profile" />
 </navigation>

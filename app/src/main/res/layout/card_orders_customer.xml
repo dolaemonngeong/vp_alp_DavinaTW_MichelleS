@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="380dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/cust_dn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/source_sans_pro_semibold"
+                android:text="Hwang In Yeop"
+                android:textColor="#3E3C97"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/order_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/source_sans_pro"
+                android:text="Friday, 18 November 2022"
+                android:textColor="#000000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/cust_dn"
+                app:layout_constraintTop_toBottomOf="@+id/cust_dn" />
+
+            <TextView
+                android:id="@+id/cust_dn5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/source_sans_pro_light"
+                android:text="Status : "
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tech_dn"
+                app:layout_constraintEnd_toStartOf="@+id/order_status"
+                app:layout_constraintTop_toTopOf="@+id/cust_dn" />
+
+            <TextView
+                android:id="@+id/order_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/source_sans_pro_light"
+                android:text="On-going"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/cust_dn5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cust_dn5"
+                app:layout_constraintVertical_bias="0.625" />
+
+            <TextView
+                android:id="@+id/order_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/source_sans_pro"
+                android:text="15:00 WIB"
+                android:textColor="#000000"
+                app:layout_constraintStart_toStartOf="@+id/order_date"
+                app:layout_constraintTop_toBottomOf="@+id/order_date" />
+
+            <ImageView
+                android:id="@+id/imageView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/line"
+                tools:layout_editor_absoluteY="62dp"
+                tools:ignore="MissingConstraints" />
+
+            <Button
+                android:id="@+id/btn_confirm"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:backgroundTint="#FFFFFF"
+                android:fontFamily="@font/source_sans_pro_bold"
+                android:text="done"
+                android:textColor="#3E3C97"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView11"
+                app:layout_constraintEnd_toEndOf="@+id/order_status"
+                app:layout_constraintStart_toStartOf="@+id/cust_dn5"
+                app:layout_constraintTop_toTopOf="@+id/imageView11"
+                app:strokeColor="#3E3C97"
+                app:strokeWidth="3px"
+                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
