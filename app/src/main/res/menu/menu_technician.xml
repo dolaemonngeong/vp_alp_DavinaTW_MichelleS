@@ -3,18 +3,18 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="nav_technician_home"
+            android:id="@+id/nav_technician_home"
             android:title="Home"
             android:icon="@drawable/home" />
         <item
-            android:id="nav_technician_profile"
+            android:id="@+id/nav_technician_profile"
             android:title="Profile"
             android:icon="@drawable/close" />
         <item
-            android:id="nav_technician_delete"
+            android:id="@+id/nav_technician_delete"
             android:title="Delete" />
         <item
-            android:id="nav_technician_logout"
+            android:id="@+id/nav_technician_logout"
             android:title="Log out" />
     </group>
 </menu>
