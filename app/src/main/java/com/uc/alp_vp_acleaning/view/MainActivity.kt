@@ -1,8 +1,11 @@
 package com.uc.alp_vp_acleaning.view
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import com.uc.alp_vp_acleaning.R
@@ -20,6 +23,15 @@ class MainActivity : AppCompatActivity() {
             toggle = ActionBarDrawerToggle(this@MainActivity,drawerLayout,R.string.open, R.string.close)
             drawerLayout.addDrawerListener(toggle)
             toggle.syncState()
+
+            //custom background
+            supportActionBar?.setBackgroundDrawable(resources.getDrawable(R.color.white))
+            supportActionBar?.setDisplayShowTitleEnabled(false)
+
+            //custom image
+            supportActionBar?.setDisplayShowCustomEnabled(true)
+            val view:View = layoutInflater.inflate(R.layout.logo, null)
+            supportActionBar?.setCustomView(view)
 
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
