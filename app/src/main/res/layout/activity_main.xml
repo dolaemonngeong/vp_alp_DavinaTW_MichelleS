@@ -5,21 +5,10 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-
     tools:context=".view.MainActivity"
     tools:openDrawer="start">
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_gravity="start"
-        android:layout_height="match_parent"
-        android:layout_width="wrap_content"
-        android:background="@drawable/burger_bg"
-        app:headerLayout="@layout/header"
-        app:menu="@menu/menu_technician"
-        app:itemTextColor="@color/white"
-        app:itemIconTint="@color/white"
-        android:fitsSystemWindows="true"/>
+
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -46,4 +35,15 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_gravity="start"
+        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:background="@drawable/burger_bg"
+        app:headerLayout="@layout/header"
+        app:menu="@menu/menu_technician"
+        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/white"
+        android:fitsSystemWindows="true"/>
 </androidx.drawerlayout.widget.DrawerLayout>
