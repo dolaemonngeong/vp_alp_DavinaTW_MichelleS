@@ -1,6 +1,7 @@
 package com.uc.alp_vp_acleaning
 
 import com.uc.alp_vp_acleaning.helper.Const
+import com.uc.alp_vp_acleaning.retrofit.EndPointApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,7 +17,7 @@ object AppModule {
     @Singleton
     @Provides
     fun getRetrofitServiceInstance(retrofit: Retrofit):
-            EndPointApi{
+            EndPointApi {
         return retrofit.create(EndPointApi::class.java)
     }
 

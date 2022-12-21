@@ -121,7 +121,7 @@
         android:layout_marginTop="5dp"
         app:layout_constraintStart_toStartOf="@+id/display_district_tech2"
         app:layout_constraintTop_toBottomOf="@+id/display_district_tech2"
-        app:srcCompat="@drawable/Vector" />
+        app:srcCompat="@drawable/starblack" />
 
     <ImageView
         android:id="@+id/imageView20"

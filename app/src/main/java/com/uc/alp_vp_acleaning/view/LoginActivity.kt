@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.uc.alp_vp_acleaning.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -20,11 +21,25 @@ class LoginActivity : AppCompatActivity() {
 //        }
 //        Toast.makeText(applicationContext, "MovieID: $movieid", Toast.LENGTH_SHORT).show()
 
-        viewBind.apply {
-            toRegister.setOnClickListener {
-                val intent = Intent(it.context, RegisterTechActivity::class.java)
-                it.context.startActivity(intent)
+        val tech = intent.getIntExtra("role",1)
+
+        if(tech == 1){
+            viewBind.apply {
+                toRegister.setOnClickListener {
+                    val intent = Intent(it.context, RegisterTechActivity::class.java)
+                    it.context.startActivity(intent)
+                }
             }
         }
+        else{
+            viewBind.apply {
+                maintitleLogin.text = "Log In as Customer"
+                toRegister.setOnClickListener {
+                    val intent = Intent(it.context, RegisterCustActivity::class.java)
+                    it.context.startActivity(intent)
+                }
+            }
+        }
+
     }
 }

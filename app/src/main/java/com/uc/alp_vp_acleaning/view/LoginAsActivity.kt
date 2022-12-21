@@ -18,12 +18,12 @@ class LoginAsActivity : AppCompatActivity() {
         viewBind.apply {
             cardTech.setOnClickListener{
                 val intent = Intent(it.context, LoginActivity::class.java)
-                intent.getStringExtra("technician")
+                intent.putExtra("role", 1)
                 it.context.startActivity(intent)
             }
             cardCust.setOnClickListener{
                 val intent = Intent(it.context, LoginActivity::class.java)
-                intent.getStringExtra("customer")
+                intent.putExtra("role",0)
                 it.context.startActivity(intent)
             }
         }

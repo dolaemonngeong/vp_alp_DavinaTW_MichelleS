@@ -8,7 +8,12 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
 
+
 interface EndPointApi {
+    @GET("/technician-all")
+    suspend fun getTechnician(
+    ): Response<JsonObject>
+
     @GET("/customer")
     suspend fun getCustomer(
     ): Response<JsonObject>
