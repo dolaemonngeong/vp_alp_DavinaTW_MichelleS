@@ -21,7 +21,7 @@ class TechnicianViewModel @Inject constructor(private val repository: Technician
             MutableLiveData<Technician>()
         }
 
-        val technician: LiveData<Technician> get() =_technician
+        val technician: LiveData<Technician> get() = _technician
 
     fun getTechnicianData() = viewModelScope.launch {
         repository.getTechnicianResult().let {
