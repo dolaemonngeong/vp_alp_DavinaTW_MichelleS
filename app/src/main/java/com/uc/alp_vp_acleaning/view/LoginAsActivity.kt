@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.uc.alp_vp_acleaning.databinding.ActivityLoginAsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 class LoginAsActivity : AppCompatActivity() {
     private lateinit var viewBind: ActivityLoginAsBinding

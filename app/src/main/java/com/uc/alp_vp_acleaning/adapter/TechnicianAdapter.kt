@@ -3,15 +3,17 @@ package com.uc.alp_vp_acleaning.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.JsonObject
 import com.uc.alp_vp_acleaning.R
 import com.uc.alp_vp_acleaning.model.Kecamatan
+import com.uc.alp_vp_acleaning.model.KecamatanElement
 import com.uc.alp_vp_acleaning.model.Technician
+import com.uc.alp_vp_acleaning.model.TechnicianElement
 
 
-class TechnicianAdapter(private val dataSet: Technician, private val dataKecamatan: Kecamatan) :
+class TechnicianAdapter(private val dataSet: ArrayList<TechnicianElement>, private val dataKecamatan: ArrayList<KecamatanElement>) :
         RecyclerView.Adapter<TechnicianAdapter.ViewHolder>() {
 
     /**
@@ -31,8 +33,8 @@ class TechnicianAdapter(private val dataSet: Technician, private val dataKecamat
 
             //kl gk bs pk (datakecamatan.size-1)
             for (i in 0 until dataKecamatan.size){
-                if(dataSet[adapterPosition].kecamatan_id == dataKecamatan[i].k_id){
-                    val a = dataKecamatan[adapterPosition].kecamatan_name
+                if(dataSet[adapterPosition].kecamatanID == dataKecamatan[i].kID){
+                    val a = dataKecamatan[adapterPosition].kecamatanName
                     kecamatan.text = a
                 }
             }
@@ -54,8 +56,9 @@ class TechnicianAdapter(private val dataSet: Technician, private val dataKecamat
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.name.text = dataSet[position].t_name
+        viewHolder.name.text = dataSet[position].tName
         viewHolder.rating.text = dataSet[position].rate.toString()
+//        viewHolder.kecamatan.text = dataSet[position].kecamatanID
 
     }
 

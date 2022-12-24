@@ -7,10 +7,12 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.uc.alp_vp_acleaning.R
+import com.uc.alp_vp_acleaning.model.Kecamatan
+import com.uc.alp_vp_acleaning.model.KecamatanElement
 import com.uc.alp_vp_acleaning.model.KecamatanItem
 
 
-class KecamatanAdapter(private val dataSet: Array<KecamatanItem>) :
+class KecamatanAdapter(private val dataSet: ArrayList<KecamatanElement>) :
         RecyclerView.Adapter<KecamatanAdapter.ViewHolder>() {
 
     /**
@@ -40,7 +42,7 @@ class KecamatanAdapter(private val dataSet: Array<KecamatanItem>) :
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.kecButton.text = dataSet[position].kecamatan_name
+        viewHolder.kecButton.text = dataSet[position].kecamatanName
     }
 
     // Return the size of your dataset (invoked by the layout manager)

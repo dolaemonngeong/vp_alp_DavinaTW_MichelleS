@@ -1,9 +1,8 @@
 package com.uc.alp_vp_acleaning.retrofit
 
 import com.google.gson.JsonObject
-import com.uc.alp_vp_acleaning.model.Customer
-import com.uc.alp_vp_acleaning.model.Order
-import com.uc.alp_vp_acleaning.model.Technician
+import com.uc.alp_vp_acleaning.model.*
+import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -16,7 +15,11 @@ interface EndPointApi {
 
     @GET("/technician-all")
     suspend fun getTechnician(
-    ): Response<JsonObject>
+    ): Response<TechnicianElement>
+
+//    @GET("/technician-all")
+//    suspend fun getTechnician1(
+//    ): Response<JsonObject>
 
     @GET("/technician/{name}")
     suspend fun getTechnician(
@@ -145,7 +148,11 @@ interface EndPointApi {
 
     @POST("/order")
     suspend fun createOrder(
-        @Body order: Order
+        @Query("name") name :String,
+        @Query("address") address :String,
+        @Query("phone") phone :String,
+        @Query("time") time :String,
+//        @Body order: Order
     ):Response<Order>
 
     //update status order dr pending -> on-going -> completed
@@ -159,6 +166,12 @@ interface EndPointApi {
         @Path("o_id") o_id: Int
     ):Response<Order>
 
+    @GET("/kecamatan")
+    suspend fun getKecamatan (
+    ):Response<JsonObject>
 
-
+    @GET("/wilayah")
+    suspend fun getWilayah (
+        @Body wilayah : Wilayah
+    ):Response<JsonObject>
 }

@@ -36,6 +36,22 @@
         </activity>
 
         <activity
+            android:name=".view.RegisterTechActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".view.RegisterCustActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
             android:name=".view.LoginActivity"
             android:exported="false">
             <meta-data

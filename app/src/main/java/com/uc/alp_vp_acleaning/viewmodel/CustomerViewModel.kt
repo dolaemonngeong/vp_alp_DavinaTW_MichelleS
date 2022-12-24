@@ -10,6 +10,7 @@ import com.uc.alp_vp_acleaning.repository.CustomerRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.json.JSONObject
+import retrofit2.Retrofit
 import javax.inject.Inject
 
 @HiltViewModel
@@ -34,6 +35,13 @@ class CustomerViewModel @Inject constructor(private val repository: CustomerRepo
             }
         }
     }
+
+    //create customer
+//    fun createCustomerVM() = viewModelScope.launch {
+//        repository.createCustomerResult(c).let{
+//
+//        }
+//    }
 
 //    fun getCustomerData() = viewModelScope.lauch {
 //        repository.getCustomerResult().let {

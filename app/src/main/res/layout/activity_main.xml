@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:background="@drawable/burger_bg"
         app:headerLayout="@layout/header"
-        app:menu="@menu/menu_technician"
+        app:menu="@menu/menu_all"
         app:itemTextColor="@color/white"
         app:itemIconTint="@color/white"
         android:fitsSystemWindows="true"/>
