@@ -15,7 +15,12 @@ interface EndPointApi {
 
     @GET("/technician-all")
     suspend fun getTechnician(
-    ): Response<TechnicianElement>
+    ): Response<TechnicianData>
+
+    @GET("/technician-by-id/{t_id}")
+    suspend fun getTechnicianById(
+        @Path("t_id") t_id: Int
+    ): Response<TechnicianData>
 
 //    @GET("/technician-all")
 //    suspend fun getTechnician1(
@@ -29,7 +34,7 @@ interface EndPointApi {
     @GET("/technician-location/{k_id}")
     suspend fun getTechnician(
         @Path("k_id") k_id : Int
-    ): Response<JsonObject>
+    ): Response<TechnicianData>
 
     @PUT("/technician/{t_id}")
     suspend fun deleteteTechnician(
@@ -168,7 +173,7 @@ interface EndPointApi {
 
     @GET("/kecamatan")
     suspend fun getKecamatan (
-    ):Response<JsonObject>
+    ):Response<KecamatanData>
 
     @GET("/wilayah")
     suspend fun getWilayah (

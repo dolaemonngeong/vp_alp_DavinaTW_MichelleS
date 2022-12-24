@@ -10,9 +10,10 @@ import com.uc.alp_vp_acleaning.R
 import com.uc.alp_vp_acleaning.model.Kecamatan
 import com.uc.alp_vp_acleaning.model.KecamatanElement
 import com.uc.alp_vp_acleaning.model.KecamatanItem
+import com.uc.alp_vp_acleaning.model.TechnicianItem
 
 
-class KecamatanAdapter(private val dataSet: ArrayList<KecamatanElement>) :
+class KecamatanAdapter(private val dataSet: ArrayList<KecamatanItem>) :
         RecyclerView.Adapter<KecamatanAdapter.ViewHolder>() {
 
     /**
@@ -25,6 +26,7 @@ class KecamatanAdapter(private val dataSet: ArrayList<KecamatanElement>) :
         init {
             // Define click listener for the ViewHolder's View.
             kecButton = view.findViewById(R.id.kec_button)
+
         }
     }
 
@@ -42,10 +44,25 @@ class KecamatanAdapter(private val dataSet: ArrayList<KecamatanElement>) :
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.kecButton.text = dataSet[position].kecamatanName
+        viewHolder.kecButton.text = dataSet[position].kecamatan_name
+//        viewHolder.kecButton.setOnClickListener {
+//            // Get the selected kecamatan ID.
+//            val kecId = dataSet[position].k_id
+//            // Filter the list of technicians based on the kecamatan ID.
+//            val filteredTechnicians = dataKecamatan.filter { it.ke == kecId }
+//            // Update the list displayed in the RecyclerView.
+//            updateTechniciansList(filteredTechnicians)
+//        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = dataSet.size
+
+//    fun updateTechniciansList(technicians: List<TechnicianItem>) {
+//        // Update the list of technicians and notify the adapter.
+//        dataSet.clear()
+//        dataSet.addAll(technicians)
+//        notifyDataSetChanged()
+//    }
 
 }

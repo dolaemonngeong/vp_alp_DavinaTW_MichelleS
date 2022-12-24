@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.uc.alp_vp_acleaning.databinding.ActivityLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
     private lateinit var viewBind: ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {

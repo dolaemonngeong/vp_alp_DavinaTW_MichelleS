@@ -1,19 +1,24 @@
 package com.uc.alp_vp_acleaning.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.JsonObject
 import com.uc.alp_vp_acleaning.R
-import com.uc.alp_vp_acleaning.model.Kecamatan
-import com.uc.alp_vp_acleaning.model.KecamatanElement
-import com.uc.alp_vp_acleaning.model.Technician
-import com.uc.alp_vp_acleaning.model.TechnicianElement
+import com.uc.alp_vp_acleaning.model.*
+import com.uc.alp_vp_acleaning.view.TechnicianDetailActivity
+import com.uc.alp_vp_acleaning.viewmodel.KecamatanViewModel
+import java.util.SimpleTimeZone
 
 
-class TechnicianAdapter(private val dataSet: ArrayList<TechnicianElement>, private val dataKecamatan: ArrayList<KecamatanElement>) :
+class TechnicianAdapter(private val dataSet: ArrayList<TechnicianItem>, private val dataKecamatan: ArrayList<KecamatanItem>) :
         RecyclerView.Adapter<TechnicianAdapter.ViewHolder>() {
 
     /**
@@ -24,20 +29,29 @@ class TechnicianAdapter(private val dataSet: ArrayList<TechnicianElement>, priva
         val name: TextView
         val rating: TextView
         val kecamatan: TextView
+        val card: CardView
 
         init {
             // Define click listener for the ViewHolder's View.
             name = view.findViewById(R.id.tech_dn)
             rating = view.findViewById(R.id.tech_rating)
             kecamatan = view.findViewById(R.id.tech_district)
+            card = view.findViewById(R.id.theCard)
 
             //kl gk bs pk (datakecamatan.size-1)
-            for (i in 0 until dataKecamatan.size){
-                if(dataSet[adapterPosition].kecamatanID == dataKecamatan[i].kID){
-                    val a = dataKecamatan[adapterPosition].kecamatanName
-                    kecamatan.text = a
-                }
-            }
+//            for (i in 0 until dataKecamatan.size){
+//                if(dataSet[adapterPosition].kecamatan_id == dataKecamatan[i].k_id){
+//                    val a = dataKecamatan[adapterPosition].kecamatan_name
+//                    kecamatan.text = a
+//                }
+//            }
+
+//            for (i in 0 until dataKecamatan.size){
+//                if(dataSet[adapterPosition].kecamatan_id == dataKecamatan[i].k_id){
+//                    kecamatan.text = dataKecamatan[i].kecamatan_name
+//                }
+//            }
+
         }
 
     }
@@ -56,13 +70,26 @@ class TechnicianAdapter(private val dataSet: ArrayList<TechnicianElement>, priva
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.name.text = dataSet[position].tName
+        viewHolder.name.text = dataSet[position].t_name
         viewHolder.rating.text = dataSet[position].rate.toString()
-//        viewHolder.kecamatan.text = dataSet[position].kecamatanID
-
+        viewHolder.kecamatan.text = dataSet[position].kecamatan_id.toString()
+        viewHolder.card.setOnClickListener {
+            val intent = Intent(it.context, TechnicianDetailActivity::class.java)
+            intent.putExtra("t_id", dataSet[position].t_id)
+            it.context.startActivity(intent)
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = dataSet.size
+
+//    fun getKecamatanName(kecamatanId: Int): String {
+//        for (i in 0 until dataKecamatan.size) {
+//            if (kecamatanId == dataKecamatan[i].k_id) {
+//                return dataKecamatan[i].kecamatan_name
+//            }
+//        }
+//        return "" // return an empty string if kecamatan_name is not found
+//    }
 
 }

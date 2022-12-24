@@ -17,6 +17,7 @@ import com.uc.alp_vp_acleaning.databinding.ActivityMainBinding
 import com.uc.alp_vp_acleaning.databinding.FragmentTechnicianHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     lateinit var viewBind: ActivityMainBinding
     lateinit var toggle: ActionBarDrawerToggle

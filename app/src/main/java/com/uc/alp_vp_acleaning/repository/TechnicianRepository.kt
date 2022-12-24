@@ -15,6 +15,8 @@ import javax.inject.Inject
 class TechnicianRepository @Inject constructor(private val api: EndPointApi) {
     suspend fun getTechnicianResult() = api.getTechnician()
 
+    suspend fun getTechnicianDetailsData(t_id: Int) = api.getTechnicianById(t_id)
+
 //    private fun convertJsonToTechnicians(json: JsonObject): List<Technician> {
 //        val technicians = mutableListOf<Technician>()
 //

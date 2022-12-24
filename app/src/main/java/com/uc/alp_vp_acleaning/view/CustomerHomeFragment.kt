@@ -1,5 +1,6 @@
 package com.uc.alp_vp_acleaning.view
 
+import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -18,6 +19,7 @@ import com.uc.alp_vp_acleaning.adapter.TechnicianAdapter
 import com.uc.alp_vp_acleaning.databinding.FragmentCustomerHomeBinding
 import com.uc.alp_vp_acleaning.model.Kecamatan
 import com.uc.alp_vp_acleaning.model.KecamatanElement
+import com.uc.alp_vp_acleaning.model.KecamatanItem
 import com.uc.alp_vp_acleaning.viewmodel.KecamatanViewModel
 import com.uc.alp_vp_acleaning.viewmodel.TechnicianViewModel
 import dagger.hilt.EntryPoint
@@ -25,10 +27,11 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.WithFragmentBindings
 import dagger.hilt.android.components.FragmentComponent
+import dagger.hilt.android.internal.Contexts
 
 //@EntryPoint
 //@InstallIn(FragmentComponent::class)
-//@AndroidEntryPoint
+@AndroidEntryPoint
 
 class CustomerHomeFragment : Fragment() {
 
@@ -60,25 +63,28 @@ class CustomerHomeFragment : Fragment() {
             bottomSheetDialog = BottomSheetDialog(requireContext())
             bottomSheetDialog.setContentView(dialogView)
 
-//            viewModelKecamatan = ViewModelProvider(this).get(KecamatanViewModel::class.java)
-//            viewModelKecamatan.getKecamatanData()
-//            viewModelKecamatan.kecamatan.observe(viewLifecycleOwner, Observer{response->
-//                val rvKecamatan = bottomSheetDialog.findViewById<RecyclerView>(R.id.rvKecamatan)
-//                rvKecamatan?.layoutManager = LinearLayoutManager(context)
-////                adapterKecamatan = KecamatanAdapter()
-//                rvKecamatan?.adapter = adapterKecamatan
-//            })
+            viewModelKecamatan = ViewModelProvider(this).get(KecamatanViewModel::class.java)
+            viewModelKecamatan.getKecamatanData()
+            viewModelKecamatan._kecamatan.observe(viewLifecycleOwner, Observer{response->
+                val rvKecamatan = bottomSheetDialog.findViewById<RecyclerView>(R.id.rvKecamatan)
+                rvKecamatan?.layoutManager = LinearLayoutManager(context)
+                adapterKecamatan = KecamatanAdapter(response)
+                rvKecamatan?.adapter = adapterKecamatan
+            })
 
             bottomSheetDialog.show()
         }
 
         viewModelTech = ViewModelProvider(this).get(TechnicianViewModel::class.java)
+//        viewModelTech = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(
+//            Application()
+//        )).get(TechnicianViewModel::class.java)
         viewModelTech.getTechnicianData()
 
         viewModelTech.technician.observe(viewLifecycleOwner, Observer{ response->
             Log.e("Technician name", response.toString())
             binding.rvAllTech.layoutManager = LinearLayoutManager(context)
-            val kecamatan = ArrayList<KecamatanElement>()
+            val kecamatan = ArrayList<KecamatanItem>()
             adapterTechnician = TechnicianAdapter(response, kecamatan)
             binding.rvAllTech.adapter = adapterTechnician
         })

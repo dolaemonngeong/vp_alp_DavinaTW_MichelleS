@@ -11,7 +11,6 @@ import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.uc.alp_vp_acleaning.model.Technician
-import com.uc.alp_vp_acleaning.model.TechnicianElement
 import com.uc.alp_vp_acleaning.model.TechnicianItem
 import com.uc.alp_vp_acleaning.repository.CustomerRepository
 import com.uc.alp_vp_acleaning.repository.TechnicianRepository
@@ -26,17 +25,12 @@ import javax.inject.Inject
 class TechnicianViewModel @Inject constructor(private val repository: TechnicianRepository):
     ViewModel(){
 
-
         //get Technician
-        val _technician:MutableLiveData<ArrayList<TechnicianElement>> by lazy{
-            MutableLiveData<ArrayList<TechnicianElement>>()
+        val _technician:MutableLiveData<ArrayList<TechnicianItem>> by lazy{
+            MutableLiveData<ArrayList<TechnicianItem>>()
         }
 
-        val technician: LiveData<ArrayList<TechnicianElement>> get() = _technician
-
-//    private val _technicians = MutableLiveData<List<TechnicianItem>>()
-//    val technicians: LiveData<List<TechnicianItem>>
-//        get() = _technicians
+        val technician: LiveData<ArrayList<TechnicianItem>> get() = _technician
 
     fun getTechnicianData() = viewModelScope.launch {
 
@@ -44,8 +38,7 @@ class TechnicianViewModel @Inject constructor(private val repository: Technician
             response ->
             //ikti movie
             if (response.isSuccessful){
-                _technician.postValue(response.body() as
-                        ArrayList<TechnicianElement>)
+                _technician.postValue(response.body()?.data as ArrayList<TechnicianItem>?)
             } else{
                 Log.e("Get Data", "Failed!")
             }
@@ -87,5 +80,25 @@ class TechnicianViewModel @Inject constructor(private val repository: Technician
 //                }
 //            }
 //        }
+
+
+    //Get Movie Details Data
+    val _technicianDetails: MutableLiveData<ArrayList<TechnicianItem>> by lazy {
+        MutableLiveData<ArrayList<TechnicianItem>>()
+    }
+
+    val technicianDetails: LiveData<ArrayList<TechnicianItem>>
+        get() = _technicianDetails
+
+    fun getTechnicianDetails(t_id: Int) = viewModelScope.launch {
+        repository.getTechnicianDetailsData(t_id).let {
+                response ->
+            if (response.isSuccessful){
+                _technicianDetails.postValue(response.body()?.data as ArrayList<TechnicianItem>?)
+            } else{
+                Log.e("Get Movie Details Data", "Failed!")
+            }
+        }
+    }
 
     }
