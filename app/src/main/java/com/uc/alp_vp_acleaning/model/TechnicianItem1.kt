@@ -1,8 +1,8 @@
 package com.uc.alp_vp_acleaning.model
 
-data class TechnicianItem(
-    val Kecamatan: Kecamatan,
+data class TechnicianItem1(
     val email: String,
+//    val kecamatan_id: List<KecamatanItem>,
     val kecamatan_id: Int,
     val password: String,
     val phone: String,
@@ -10,5 +10,5 @@ data class TechnicianItem(
     val status: String,
     val t_id: Int,
     val t_name: String,
-    val username: String
+    val username: String,
 )

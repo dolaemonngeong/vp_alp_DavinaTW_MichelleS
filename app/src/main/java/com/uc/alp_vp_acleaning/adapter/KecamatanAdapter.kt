@@ -4,16 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.uc.alp_vp_acleaning.R
-import com.uc.alp_vp_acleaning.model.Kecamatan
-import com.uc.alp_vp_acleaning.model.KecamatanElement
-import com.uc.alp_vp_acleaning.model.KecamatanItem
-import com.uc.alp_vp_acleaning.model.TechnicianItem
+import com.uc.alp_vp_acleaning.model.KecamatanItem1
 
 
-class KecamatanAdapter(private val dataSet: ArrayList<KecamatanItem>) :
+class KecamatanAdapter(private val dataSet: ArrayList<KecamatanItem1>) :
         RecyclerView.Adapter<KecamatanAdapter.ViewHolder>() {
 
     /**

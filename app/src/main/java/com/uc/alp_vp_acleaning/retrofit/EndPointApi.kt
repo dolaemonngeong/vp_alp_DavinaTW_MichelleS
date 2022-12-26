@@ -2,7 +2,6 @@ package com.uc.alp_vp_acleaning.retrofit
 
 import com.google.gson.JsonObject
 import com.uc.alp_vp_acleaning.model.*
-import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -20,7 +19,7 @@ interface EndPointApi {
     @GET("/technician-by-id/{t_id}")
     suspend fun getTechnicianById(
         @Path("t_id") t_id: Int
-    ): Response<TechnicianData>
+    ): Response<TechnicianData1>
 
 //    @GET("/technician-all")
 //    suspend fun getTechnician1(
@@ -34,7 +33,7 @@ interface EndPointApi {
     @GET("/technician-location/{k_id}")
     suspend fun getTechnician(
         @Path("k_id") k_id : Int
-    ): Response<TechnicianData>
+    ): Response<TechnicianData1>
 
     @PUT("/technician/{t_id}")
     suspend fun deleteteTechnician(
@@ -173,7 +172,7 @@ interface EndPointApi {
 
     @GET("/kecamatan")
     suspend fun getKecamatan (
-    ):Response<KecamatanData>
+    ):Response<KecamatanData1>
 
     @GET("/wilayah")
     suspend fun getWilayah (

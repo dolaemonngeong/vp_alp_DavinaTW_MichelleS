@@ -6,19 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.gson.JsonObject
 import com.uc.alp_vp_acleaning.R
 import com.uc.alp_vp_acleaning.model.*
 import com.uc.alp_vp_acleaning.view.TechnicianDetailActivity
-import com.uc.alp_vp_acleaning.viewmodel.KecamatanViewModel
-import java.util.SimpleTimeZone
 
 
-class TechnicianAdapter(private val dataSet: ArrayList<TechnicianItem>, private val dataKecamatan: ArrayList<KecamatanItem>) :
+class TechnicianAdapter(private val dataSet: ArrayList<TechnicianItem>, private val dataKecamatan: ArrayList<KecamatanItem1>) :
         RecyclerView.Adapter<TechnicianAdapter.ViewHolder>() {
 
     /**
@@ -72,7 +66,7 @@ class TechnicianAdapter(private val dataSet: ArrayList<TechnicianItem>, private 
         // contents of the view with that element
         viewHolder.name.text = dataSet[position].t_name
         viewHolder.rating.text = dataSet[position].rate.toString()
-        viewHolder.kecamatan.text = dataSet[position].kecamatan_id.toString()
+        viewHolder.kecamatan.text = dataSet[position].Kecamatan.kecamatan_name
         viewHolder.card.setOnClickListener {
             val intent = Intent(it.context, TechnicianDetailActivity::class.java)
             intent.putExtra("t_id", dataSet[position].t_id)

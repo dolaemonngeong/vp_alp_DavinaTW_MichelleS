@@ -5,20 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonArray
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
-import com.uc.alp_vp_acleaning.model.Technician
 import com.uc.alp_vp_acleaning.model.TechnicianItem
-import com.uc.alp_vp_acleaning.repository.CustomerRepository
+import com.uc.alp_vp_acleaning.model.TechnicianItem1
 import com.uc.alp_vp_acleaning.repository.TechnicianRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -82,7 +73,7 @@ class TechnicianViewModel @Inject constructor(private val repository: Technician
 //        }
 
 
-    //Get Movie Details Data
+    //Get Technician Details Data
     val _technicianDetails: MutableLiveData<ArrayList<TechnicianItem>> by lazy {
         MutableLiveData<ArrayList<TechnicianItem>>()
     }

@@ -1,7 +1,7 @@
 package com.uc.alp_vp_acleaning.model
 
-data class KecamatanData (
-    val `data` : List<KecamatanItem>,
+data class TechnicianData1 (
+    val `data` : List<TechnicianItem1>,
     val message: String,
     val status: Int
 )

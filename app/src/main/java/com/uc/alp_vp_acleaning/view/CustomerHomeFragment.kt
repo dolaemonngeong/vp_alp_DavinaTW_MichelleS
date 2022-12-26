@@ -1,6 +1,5 @@
 package com.uc.alp_vp_acleaning.view
 
-import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -17,17 +16,10 @@ import com.uc.alp_vp_acleaning.R
 import com.uc.alp_vp_acleaning.adapter.KecamatanAdapter
 import com.uc.alp_vp_acleaning.adapter.TechnicianAdapter
 import com.uc.alp_vp_acleaning.databinding.FragmentCustomerHomeBinding
-import com.uc.alp_vp_acleaning.model.Kecamatan
-import com.uc.alp_vp_acleaning.model.KecamatanElement
-import com.uc.alp_vp_acleaning.model.KecamatanItem
+import com.uc.alp_vp_acleaning.model.KecamatanItem1
 import com.uc.alp_vp_acleaning.viewmodel.KecamatanViewModel
 import com.uc.alp_vp_acleaning.viewmodel.TechnicianViewModel
-import dagger.hilt.EntryPoint
-import dagger.hilt.InstallIn
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.WithFragmentBindings
-import dagger.hilt.android.components.FragmentComponent
-import dagger.hilt.android.internal.Contexts
 
 //@EntryPoint
 //@InstallIn(FragmentComponent::class)
@@ -84,7 +76,7 @@ class CustomerHomeFragment : Fragment() {
         viewModelTech.technician.observe(viewLifecycleOwner, Observer{ response->
             Log.e("Technician name", response.toString())
             binding.rvAllTech.layoutManager = LinearLayoutManager(context)
-            val kecamatan = ArrayList<KecamatanItem>()
+            val kecamatan = ArrayList<KecamatanItem1>()
             adapterTechnician = TechnicianAdapter(response, kecamatan)
             binding.rvAllTech.adapter = adapterTechnician
         })

@@ -1,15 +1,6 @@
 package com.uc.alp_vp_acleaning.repository
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.google.gson.JsonObject
-import com.uc.alp_vp_acleaning.model.Technician
-import com.uc.alp_vp_acleaning.model.TechnicianItem
 import com.uc.alp_vp_acleaning.retrofit.EndPointApi
-import dagger.hilt.android.HiltAndroidApp
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import javax.inject.Inject
 
 class TechnicianRepository @Inject constructor(private val api: EndPointApi) {
