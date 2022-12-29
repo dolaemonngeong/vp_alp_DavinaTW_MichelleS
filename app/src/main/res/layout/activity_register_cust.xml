@@ -115,7 +115,8 @@
                             android:inputType="textPassword"
                             android:textColorHint="#000000"
                             app:layout_constraintStart_toStartOf="@+id/reg_emailcust"
-                            app:layout_constraintTop_toBottomOf="@+id/reg_emailcust" />
+                            app:layout_constraintTop_toBottomOf="@+id/reg_emailcust"
+                            app:passwordToggleEnabled="true" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
@@ -148,13 +149,13 @@
                     android:id="@+id/to_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
                     android:layout_marginTop="25dp"
-                    android:layout_marginEnd="90dp"
                     android:clickable="true"
                     android:fontFamily="@font/source_sans_pro_bold"
                     android:text="Log In Here"
                     android:textColor="#F9B854"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView3"
                     app:layout_constraintTop_toBottomOf="@+id/button_registercust"
                     tools:ignore="TouchTargetSizeCheck" />
 

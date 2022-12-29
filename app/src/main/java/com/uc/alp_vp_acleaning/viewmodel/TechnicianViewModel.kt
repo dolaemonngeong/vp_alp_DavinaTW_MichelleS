@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.uc.alp_vp_acleaning.model.TechnicianItem
-import com.uc.alp_vp_acleaning.model.TechnicianItem1
 import com.uc.alp_vp_acleaning.repository.TechnicianRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

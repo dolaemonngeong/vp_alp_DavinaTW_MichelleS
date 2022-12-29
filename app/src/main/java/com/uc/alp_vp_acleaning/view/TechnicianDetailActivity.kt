@@ -22,32 +22,34 @@ class TechnicianDetailActivity : AppCompatActivity() {
         bind = ActivityTechnicianDetailBinding.inflate(layoutInflater)
         setContentView(bind.root)
 
+        supportActionBar?.hide()
+
         val t_id = intent.getIntExtra("t_id", 0)
         Toast.makeText(applicationContext, "t_id: $t_id", Toast.LENGTH_SHORT).show()
 
         viewModel = ViewModelProvider(this)[TechnicianViewModel::class.java]
         viewModel.getTechnicianDetails(t_id)
         viewModel.technicianDetails.observe(this, Observer { response ->
-            if (t_id <= response.size) {
-                bind.displayNameTech.text = response[t_id].t_name
+//            if (t_id <= response.size) {
+                bind.displayNameTech.text = response[0].t_name
                 bind.displayDistrictTech.apply {
-                    text = response[t_id].kecamatan_id.toString()
+                    text = response[0].Kecamatan.kecamatan_name
                 }
                 bind.displayRateTech.apply {
-                    text = response[t_id].rate.toString()
+                    text = response[0].rate.toString()
                 }
                 bind.chatBtn.setOnClickListener {
                     val url =
-                        "https://api.whatsapp.com/send?phone=" + response[t_id].phone + "&text=Halo%Perkenalkan%Nama%20Di%20Saya%20..."
+                        "https://api.whatsapp.com/send?phone=" + response[0].phone + "&text=Halo%Perkenalkan%Nama%20Di%20Saya%20..."
                     val intent = Intent(Intent.ACTION_VIEW)
                     intent.data = Uri.parse(url)
                     startActivity(intent)
                 }
                 bind.orderBtn.setOnClickListener {
                     val keOrder = Intent(it.context, FormOrderActivity::class.java)
-                    it.context.startActivity(intent)
+                    it.context.startActivity(keOrder)
                 }
-            }
+//            }
         })
     }
 }

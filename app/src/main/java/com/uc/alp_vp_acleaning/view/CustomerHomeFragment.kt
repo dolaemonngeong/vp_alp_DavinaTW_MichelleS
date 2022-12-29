@@ -16,6 +16,7 @@ import com.uc.alp_vp_acleaning.R
 import com.uc.alp_vp_acleaning.adapter.KecamatanAdapter
 import com.uc.alp_vp_acleaning.adapter.TechnicianAdapter
 import com.uc.alp_vp_acleaning.databinding.FragmentCustomerHomeBinding
+import com.uc.alp_vp_acleaning.model.Kecamatan
 import com.uc.alp_vp_acleaning.model.KecamatanItem1
 import com.uc.alp_vp_acleaning.viewmodel.KecamatanViewModel
 import com.uc.alp_vp_acleaning.viewmodel.TechnicianViewModel
@@ -76,7 +77,7 @@ class CustomerHomeFragment : Fragment() {
         viewModelTech.technician.observe(viewLifecycleOwner, Observer{ response->
             Log.e("Technician name", response.toString())
             binding.rvAllTech.layoutManager = LinearLayoutManager(context)
-            val kecamatan = ArrayList<KecamatanItem1>()
+            val kecamatan = ArrayList<Kecamatan>()
             adapterTechnician = TechnicianAdapter(response, kecamatan)
             binding.rvAllTech.adapter = adapterTechnician
         })
