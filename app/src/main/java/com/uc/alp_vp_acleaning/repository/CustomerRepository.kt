@@ -9,5 +9,5 @@ import javax.inject.Inject
 class CustomerRepository @Inject constructor(private  val api: EndPointApi){
     suspend fun getCustomerResult() = api.getCustomer()
 
-    suspend fun createCustomerResult(c:CustomerItem) = api.createCustomer(c)
+    suspend fun createCustomerResult(c:CustomerItem) = api.createCustomer(c.c_id, c.email, c.name, c.password, c.phone, c.status, c.username)
 }

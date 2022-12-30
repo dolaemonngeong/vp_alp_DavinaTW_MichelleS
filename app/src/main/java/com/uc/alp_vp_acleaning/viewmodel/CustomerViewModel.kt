@@ -12,6 +12,9 @@ import com.uc.alp_vp_acleaning.repository.CustomerRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 import javax.inject.Inject
 
@@ -40,16 +43,32 @@ class CustomerViewModel @Inject constructor(private val repository: CustomerRepo
 
     //create customer
     fun createCustomerVM(customer: CustomerItem) = viewModelScope.launch {
-        repository.createCustomerResult(customer).let{
-            response ->
-            if (response.isSuccessful){
-                _customer.postValue(response.body() as
-                        CustomerData)
-            } else{
+        repository.createCustomerResult(customer).let { response ->
+            if (response.isSuccessful) {
+                _customer.postValue(
+                    response.body() as
+                            CustomerData
+                )
+            } else {
                 Log.e("Create Data", "Failed!")
             }
         }
     }
+//    fun createCustomerVM(customer: CustomerItem) = viewModelScope.launch {
+//        repository.createCustomerResult(customer).enqueue(object : Callback<CustomerData>{
+//            override fun onResponse(call: Call<CustomerData>, response: Response<CustomerData>) {
+//                if(response.isSuccessful){
+//                    val lastInsertedID = response.body()?.data?.last_inserted_id
+//                }else{
+//                    Log.e("Create Customer","Fail")
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<CustomerData>, t: Throwable) {
+//                Log.e("Create Customer", "Falilure")
+//            }
+//        })
+//    }
 
 //    fun getCustomerData() = viewModelScope.lauch {
 //        repository.getCustomerResult().let {

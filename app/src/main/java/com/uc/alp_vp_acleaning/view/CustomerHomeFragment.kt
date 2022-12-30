@@ -1,5 +1,6 @@
 package com.uc.alp_vp_acleaning.view
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -35,6 +36,8 @@ class CustomerHomeFragment : Fragment() {
     private lateinit var viewModelTech : TechnicianViewModel
     private lateinit var viewModelKecamatan: KecamatanViewModel
 
+//    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("c_id")
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,7 +53,7 @@ class CustomerHomeFragment : Fragment() {
 
 
         binding.filterButton.setOnClickListener{
-            Toast.makeText(activity, "ini filter", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(activity, "ini filter", Toast.LENGTH_SHORT).show()
             val dialogView = layoutInflater.inflate(R.layout.button_filter, null)
 
             bottomSheetDialog = BottomSheetDialog(requireContext())

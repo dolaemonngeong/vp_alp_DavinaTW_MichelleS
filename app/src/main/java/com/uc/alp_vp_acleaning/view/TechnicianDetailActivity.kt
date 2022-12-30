@@ -25,7 +25,7 @@ class TechnicianDetailActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         val t_id = intent.getIntExtra("t_id", 0)
-        Toast.makeText(applicationContext, "t_id: $t_id", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(applicationContext, "t_id: $t_id", Toast.LENGTH_SHORT).show()
 
         viewModel = ViewModelProvider(this)[TechnicianViewModel::class.java]
         viewModel.getTechnicianDetails(t_id)

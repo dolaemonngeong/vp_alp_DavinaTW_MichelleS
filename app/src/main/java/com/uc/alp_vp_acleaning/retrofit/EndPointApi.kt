@@ -3,6 +3,7 @@ package com.uc.alp_vp_acleaning.retrofit
 import com.google.gson.JsonObject
 import com.uc.alp_vp_acleaning.model.*
 import kotlinx.coroutines.Deferred
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -28,12 +29,12 @@ interface EndPointApi {
 
     @GET("/technician/{name}")
     suspend fun getTechnician(
-        @Path("name") name : String
+        @Path("name") name: String
     ): Response<JsonObject>
 
     @GET("/technician-location/{k_id}")
     suspend fun getTechnician(
-        @Path("k_id") k_id : Int
+        @Path("k_id") k_id: Int
     ): Response<TechnicianData>
 
     @PUT("/technician/{t_id}")
@@ -45,7 +46,7 @@ interface EndPointApi {
 //        val phone: String,
 //        val status: String,
 //        val username: String
-        @Path ("t_id") t_id : Int
+        @Path("t_id") t_id: Int
     ): Response<TechnicianData>
 
     @POST("/technician")
@@ -81,8 +82,8 @@ interface EndPointApi {
 //        val phone: String,
 //        val status: String,
 //        val username: String
-        @Path("t_id") t_id : Int,
-        @Path("rate") rate : Int
+        @Path("t_id") t_id: Int,
+        @Path("rate") rate: Int
     ): Response<Technician>
 
     @POST("/login-customer")
@@ -98,17 +99,23 @@ interface EndPointApi {
     suspend fun getCustomerByID(
     ): Response<JsonObject>
 
+    @FormUrlEncoded
     @POST("/customer")
     suspend fun createCustomer(
-//        val c_id: Int,
-//        val email: String,
-//        val name: String,
-//        val password: String,
-//        val phone: String,
-//        val status: String,
-//        val username: String
-        @Body customer: CustomerItem
-    ): Response<CustomerData>
+        @Field("c_id") c_id: String,
+        @Field("email") email: String,
+        @Field("name") name: String,
+        @Field("password") password: String,
+        @Field("phone") phone: String,
+        @Field("status") status: String,
+        @Field("username") username: String
+    )
+            : Response<CustomerData>
+//    @POST
+//    Fun... () {
+//        @Field("c_id") c_id: String,
+//        ...
+//    }: Response<... >
 
     @PATCH("/customer/{c_id}")
     suspend fun updateCustomer(
@@ -132,13 +139,13 @@ interface EndPointApi {
 //        val status: String,
 //        val username: String
 //        @Body customer: Customer
-    @Path("c_id") c_id : Int
+        @Path("c_id") c_id: Int
     ): Response<Customer>
 
     @GET("/customer-order/{c_id}/{status}")
     suspend fun orderCustomer(
         @Path("c_id") c_id: Int,
-    @Path("status") status : String
+        @Path("status") status: String
     ): Response<Order>
 
     @GET("/technician-order/{t_id}/{status}")
@@ -153,30 +160,30 @@ interface EndPointApi {
 
     @POST("/order")
     suspend fun createOrder(
-        @Query("name") name :String,
-        @Query("address") address :String,
-        @Query("phone") phone :String,
-        @Query("time") time :String,
+        @Query("name") name: String,
+        @Query("address") address: String,
+        @Query("phone") phone: String,
+        @Query("time") time: String,
 //        @Body order: Order
-    ):Response<Order>
+    ): Response<Order>
 
     //update status order dr pending -> on-going -> completed
     @PATCH("/order")
     suspend fun updateOrder(
 
-    ):Response<Order>
+    ): Response<Order>
 
     @GET("/order-by-id/{o_id}")
     suspend fun orderDetail(
         @Path("o_id") o_id: Int
-    ):Response<Order>
+    ): Response<Order>
 
     @GET("/kecamatan")
-    suspend fun getKecamatan (
-    ):Response<KecamatanData1>
+    suspend fun getKecamatan(
+    ): Response<KecamatanData1>
 
     @GET("/wilayah")
-    suspend fun getWilayah (
-        @Body wilayah : Wilayah
-    ):Response<JsonObject>
+    suspend fun getWilayah(
+        @Body wilayah: Wilayah
+    ): Response<JsonObject>
 }
