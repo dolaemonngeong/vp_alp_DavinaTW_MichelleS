@@ -45,6 +45,7 @@ class LoginActivity : AppCompatActivity() {
                     it.context.startActivity(intent)
                 }
                 buttonLogin.setOnClickListener {
+                    
                     val intent = Intent(it.context, MainActivity::class.java)
                     intent.putExtra("role", 0)
                     it.context.startActivity(intent)

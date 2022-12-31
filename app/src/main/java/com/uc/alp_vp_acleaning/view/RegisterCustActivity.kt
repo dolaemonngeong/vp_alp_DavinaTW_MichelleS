@@ -63,8 +63,8 @@ class RegisterCustActivity : AppCompatActivity() {
         var isCompleted: Boolean = true
 
         viewBind.apply {
-            var fullname = regNamecust.text.toString().trim()
-            var customername = regUnamecust.text.toString().trim()
+            var name = regNamecust.text.toString().trim()
+            var username = regUnamecust.text.toString().trim()
             var email = regEmailcust.text.toString().trim()
             var phone_no = regPhonecust.text.toString().trim()
             var password = regPasscust.text.toString().trim()
@@ -72,92 +72,91 @@ class RegisterCustActivity : AppCompatActivity() {
             val customer = CustomerItem(
                 "",
                 email,
-                fullname,
+                name,
                 password,
                 phone_no,
                 "active",
-                customername
+                username
             )
 
 
             // fullname
-            if (fullname.isEmpty()) {
-                fullname. = "Please fill your fullname"
+            if (customer.name!!.isEmpty()) {
+                regNamecust.error = "Please fill your fullname"
                 isCompleted = false
             } else {
-                fullname.error = ""
+                regNamecust.error = ""
             }
 
-            // customername
-            if (customer.customername!!.isEmpty()) {
-                customername_edit.error = "Please fill your customername"
+            // username
+            if (customer.username!!.isEmpty()) {
+                regUnamecust.error = "Please fill your username"
                 isCompleted = false
             } else {
-                customername_edit.error = ""
+                regUnamecust.error = ""
             }
 
             //Phone no
-            if (customer.phone_no!!.isEmpty()) {
-                phoneno_edit.error = "Please fill your phone number"
+            if (customer.phone!!.isEmpty()) {
+                regPhonecust.error = "Please fill your phone number"
                 isCompleted = false
             } else {
-                phoneno_edit.error = ""
+                regPhonecust.error = ""
             }
 
             //Email
             if (customer.email!!.isEmpty()) {
-                email_edit.error = "Please fill your email"
+                regEmailcust.error = "Please fill your email"
                 isCompleted = false
             } else {
                 // Berguna untuk cek apakah input merupakan email
                 if (!Patterns.EMAIL_ADDRESS.matcher(customer.email).matches()) {
-                    email_edit.error = "Please fill your email correctly"
+                    regEmailcust.error = "Please fill your email correctly"
                     isCompleted = false
                 } else {
-                    email_edit.error = ""
+                    regEmailcust.error = ""
                 }
             }
 
-            if (!customerconfirm.confirmpassword.equals(customer.password)) {
-                confirmpassword_edit.error = "Please fill in the same as your password"
-                isCompleted = false
-            } else {
-                confirmpassword_edit.error = ""
-            }
+//            if (!customerconfirm.confirmpassword.equals(customer.password)) {
+//                confirmpassword_edit.error = "Please fill in the same as your password"
+//                isCompleted = false
+//            } else {
+//                confirmpassword_edit.error = ""
+//            }
+
 //         Password
             if (customer.password!!.isEmpty()) {
-                password_edit.error = "Please fill your password"
-                confirmpassword_edit.error = "Please fill your password"
+                regPasscust.error = "Please fill your password"
                 isCompleted = false
             } else {
 
                 if (customer.password!!.length < 8) {
-                    password_edit.error = "Jumlah password min 8 karakter"
-                    confirmpassword_edit.error = "Jumlah password min 8 karakter"
+                    regPasscust.error = "Jumlah password min 8 character"
                     isCompleted = false
                 } else if (!customer.password!!.matches(".*[a-z].*".toRegex())) {
-                    password_edit.error = "Password tidak memiliki huruf kecil"
-                    confirmpassword_edit.error = "Password tidak memiliki huruf kecil"
+                    regPasscust.error = "Password tidak memiliki huruf kecil"
                     isCompleted = false
                 } else if (!customer.password!!.matches(".*[A-Z].*".toRegex())) {
-                    password_edit.error = "Password tidak memiliki huruf kapital"
-                    confirmpassword_edit.error = "Password tidak memiliki huruf kapital"
+                    regPasscust.error = "Password tidak memiliki huruf kapital"
                     isCompleted = false
                 } else {
-                    password_edit.error = ""
-                    confirmpassword_edit.error = ""
+                    regPasscust.error = ""
                 }
             }
 
             if (isCompleted) {
-                viewModelCust = ViewModelProvider(this).get(CustomerViewModel::class.java)
+                viewModelCust = ViewModelProvider(this@RegisterCustActivity).get(CustomerViewModel::class.java)
                 viewModelCust.createCustomerVM(customer)
 
-                val intent = Intent(it.context, MainActivity::class.java)
-                intent.putExtra("role", 0)
-                it.context.startActivity(intent)
-
+                done()
             }
         }
+    }
+
+    private fun done(){
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("role", 0)
+        startActivity(intent)
     }
 }

@@ -47,7 +47,7 @@
                             android:textSize="40sp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:errorEnabled="true"/>
+                            />
 
                         <EditText
                             android:id="@+id/reg_namecust"
@@ -61,7 +61,8 @@
                             android:inputType="textPersonName"
                             android:textColorHint="#000000"
                             app:layout_constraintStart_toStartOf="@+id/maintitle_regcust"
-                            app:layout_constraintTop_toBottomOf="@+id/maintitle_regcust" />
+                            app:layout_constraintTop_toBottomOf="@+id/maintitle_regcust"
+                            />
 
                         <EditText
                             android:id="@+id/reg_unamecust"

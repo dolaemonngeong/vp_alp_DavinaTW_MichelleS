@@ -33,18 +33,18 @@ class TechnicianHomeFragment : Fragment() {
 
     }
 
-    fun onRadioButtonChecked(group: RadioGroup, checkedId: Int) {
-        when(checkedId) {
-            R.id.pending_rb -> {
-                Toast.makeText(context, "ini pending", Toast.LENGTH_SHORT).show()
-            }
-            R.id.ongoing_rb -> {
-                Toast.makeText(context, "ini ongoing", Toast.LENGTH_SHORT).show()
-            }
-            R.id.completed_rb -> {
-                Toast.makeText(context, "ini completed", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
+//    fun onRadioButtonChecked(group: RadioGroup, checkedId: Int) {
+//        when(checkedId) {
+//            R.id.pending_rb -> {
+//                Toast.makeText(context, "ini pending", Toast.LENGTH_SHORT).show()
+//            }
+//            R.id.ongoing_rb -> {
+//                Toast.makeText(context, "ini ongoing", Toast.LENGTH_SHORT).show()
+//            }
+//            R.id.completed_rb -> {
+//                Toast.makeText(context, "ini completed", Toast.LENGTH_SHORT).show()
+//            }
+//        }
+//    }
 
 }
