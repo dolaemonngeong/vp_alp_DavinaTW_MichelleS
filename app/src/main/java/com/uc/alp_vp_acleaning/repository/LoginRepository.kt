@@ -7,4 +7,6 @@ import javax.inject.Inject
 class LoginRepository @Inject constructor(private val api: EndPointApi) {
 
     suspend fun loginTechnician(loginRequest: LoginRequest) = api.loginTechnician(loginRequest)
+
+    suspend fun loginCustomer(loginRequest: LoginRequest) = api.loginCustomer(loginRequest.username, loginRequest.password)
 }

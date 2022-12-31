@@ -3,14 +3,25 @@ package com.uc.alp_vp_acleaning.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import com.uc.alp_vp_acleaning.databinding.ActivityLoginBinding
+import com.uc.alp_vp_acleaning.model.LoginRequest
+import com.uc.alp_vp_acleaning.model.LoginResponse
+import com.uc.alp_vp_acleaning.repository.LoginRepository
+import com.uc.alp_vp_acleaning.viewmodel.CustomerViewModel
+import com.uc.alp_vp_acleaning.viewmodel.LoginViewModel
+import com.uc.alp_vp_acleaning.viewmodel.TechnicianViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
     private lateinit var viewBind: ActivityLoginBinding
+    private lateinit var viewModel: LoginViewModel
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBind = ActivityLoginBinding.inflate(layoutInflater)
@@ -18,10 +29,7 @@ class LoginActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-//        if(intent.getStringExtra("technician")){
-//
-//        }
-//        Toast.makeText(applicationContext, "MovieID: $movieid", Toast.LENGTH_SHORT).show()
+
 
         val tech = intent.getIntExtra("role", 1)
 
@@ -45,13 +53,76 @@ class LoginActivity : AppCompatActivity() {
                     it.context.startActivity(intent)
                 }
                 buttonLogin.setOnClickListener {
-                    
-                    val intent = Intent(it.context, MainActivity::class.java)
-                    intent.putExtra("role", 0)
-                    it.context.startActivity(intent)
+//                    val username = loginUsername.text.toString().trim()
+//                    val password = loginPass.text.toString().trim()
+//
+//                    val login = LoginRequest(username, password)
+                    cekCust()
+
                 }
             }
         }
     }
 
+    private fun cekCust() {
+        viewBind.apply {
+            val username = loginUsername.text.toString().trim()
+            val password = loginPass.text.toString().trim()
+
+            val loginrequest = LoginRequest(username, password)
+
+            var isCompleted: Boolean = true
+
+            // username
+            if (loginrequest.username.isEmpty()) {
+                loginUsername.error = "Please fill your username"
+                isCompleted = false
+            } else {
+                loginUsername.error = ""
+            }
+
+            // password
+            if (loginrequest.password.isEmpty()) {
+                loginPass.error = "Please fill your password"
+                isCompleted = false
+            } else {
+                loginPass.error = ""
+            }
+
+            if(isCompleted){
+                viewModel = ViewModelProvider(this@LoginActivity).get(LoginViewModel::class.java)
+                //viewModel.loginResponse.observe(this@LoginActivity, Observer { response ->
+//                    Log.e("login", response.toString())
+                //loginCustVM(loginrequest)
+                //}
+//                private val repository: LoginRepository
+
+                doneCust()
+            }
+        }
+    }
+
+//    fun loginCustVM(loginRequest: LoginRequest) = launch {
+//
+//        private val _loginResponse = MutableLiveData<LoginResponse>()
+//        val loginResponse: LiveData<LoginResponse> = _loginResponse
+//        repository.loginCustomer(loginRequest).let { response ->
+//            if (response.body()?.message === "Login successful" && response.isSuccessful) {
+//                _loginResponse.postValue(
+//                    response.body() as
+//                            LoginResponse
+//                )
+//                Log.e("ini login cust","Beerhsl!")
+//            } else {
+//                Log.e("Login Customer", "Failed!")
+//            }
+//        }
+//    }
+
+    private fun doneCust(){
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("role", 0)
+        startActivity(intent)
+        finish()
+    }
 }

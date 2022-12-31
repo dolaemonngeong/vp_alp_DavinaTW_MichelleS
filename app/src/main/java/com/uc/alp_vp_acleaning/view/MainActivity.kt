@@ -16,11 +16,14 @@ import com.uc.alp_vp_acleaning.R
 import com.uc.alp_vp_acleaning.databinding.ActivityMainBinding
 import com.uc.alp_vp_acleaning.databinding.FragmentTechnicianHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
+//import kotlinx.coroutines.flow.internal.NoOpContinuation.context
+import java.util.prefs.Preferences
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     lateinit var viewBind: ActivityMainBinding
     lateinit var toggle: ActionBarDrawerToggle
+//    private val Context.datacust: DataStore<Preferences> by preferencesDataStore("dataid")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +51,10 @@ class MainActivity : AppCompatActivity() {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
 //            Log.d("test1", "test")
 
+//            val getUserId: Flow<String?> = context.dataStore.data
+//                .map { preferences ->
+//                    preferences["user_id"] ?: ""
+//                }
 
             val tech = intent.getIntExtra("role", 1)
             if (tech == 1) {

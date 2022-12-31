@@ -86,10 +86,12 @@ interface EndPointApi {
         @Path("rate") rate: Int
     ): Response<Technician>
 
+    @FormUrlEncoded
     @POST("/login-customer")
     suspend fun loginCustomer(
-        @Body customer: Customer
-    ): Response<Customer>
+        @Field("username") username: String,
+        @Field("password") password: String,
+    ): Response<LoginResponse>
 
     @GET("/customer")
     suspend fun getCustomer(
