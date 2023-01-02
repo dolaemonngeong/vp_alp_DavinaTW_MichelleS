@@ -8,8 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.uc.alp_vp_acleaning.R
 import com.uc.alp_vp_acleaning.model.Order
+import com.uc.alp_vp_acleaning.model.OrderItem
 
-class OrderAdapter(private val dataSet: Order, private val dataOrder: Order) :
+class OrderAdapter(private val dataSet: ArrayList<OrderItem>) :
 RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
 
     /**

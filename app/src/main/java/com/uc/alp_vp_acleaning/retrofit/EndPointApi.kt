@@ -38,7 +38,7 @@ interface EndPointApi {
     ): Response<TechnicianData>
 
     @PUT("/technician/{t_id}")
-    suspend fun deleteteTechnician(
+    suspend fun deleteTechnician(
 //        val c_id: Int,
 //        val email: String,
 //        val name: String,
@@ -175,10 +175,14 @@ interface EndPointApi {
 
     ): Response<Order>
 
+    @GET("/order-all")
+    suspend fun getOrderData(
+    ): Response<OrderData>
+
     @GET("/order-by-id/{o_id}")
-    suspend fun orderDetail(
+    suspend fun getOrderById(
         @Path("o_id") o_id: Int
-    ): Response<Order>
+    ): Response<OrderData>
 
     @GET("/kecamatan")
     suspend fun getKecamatan(

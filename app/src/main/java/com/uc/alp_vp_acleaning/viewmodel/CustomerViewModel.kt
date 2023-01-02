@@ -65,12 +65,12 @@ class CustomerViewModel @Inject constructor(private val repository: CustomerRepo
 //            }
 //
 //            override fun onFailure(call: Call<CustomerData>, t: Throwable) {
-//                Log.e("Create Customer", "Falilure")
+//                Log.e("Create Customer", "Failure")
 //            }
 //        })
 //    }
 
-//    fun getCustomerData() = viewModelScope.lauch {
+//    fun getCustomerData() = viewModelScope.launch {
 //        repository.getCustomerResult().let {
 //            if (response.isSuccessful) {
 //                _customer.postValue(response.body())

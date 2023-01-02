@@ -29,7 +29,6 @@ class Order(elements: Collection<OrderElement>) : ArrayList<OrderElement>(elemen
 data class OrderElement (
     @Json(name = "0_id")
     val the0_ID: Long,
-
     val name: String,
     val address: String,
     val phone: String,
