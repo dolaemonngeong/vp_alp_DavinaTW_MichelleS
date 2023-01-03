@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.uc.alp_vp_acleaning.model.*
 import com.uc.alp_vp_acleaning.repository.LoginRepository
-import com.uc.alp_vp_acleaning.repository.TechnicianRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -19,10 +18,14 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(private val repository: LoginRepository) :
     ViewModel() {
 
-    private val _loginResponse = MutableLiveData<LoginResponse>()
-    val loginResponse: LiveData<LoginResponse> = _loginResponse
+//    private val _loginResponse = MutableLiveData<LoginResponse>()
+//    val loginResponse: LiveData<LoginResponse> = _loginResponse
+//
+//    val loginError = MutableLiveData<String>()
 
-    val loginError = MutableLiveData<String>()
+    //login terbaru
+    //login Customer
+
 
     //login cust
 //    fun loginCustVM(loginRequest: LoginRequest) {

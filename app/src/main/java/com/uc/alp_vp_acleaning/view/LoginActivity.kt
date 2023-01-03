@@ -7,10 +7,10 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.*
 import com.uc.alp_vp_acleaning.databinding.ActivityLoginBinding
-import com.uc.alp_vp_acleaning.model.LoginRequest
+import com.uc.alp_vp_acleaning.model.LoginRequestCust
+import com.uc.alp_vp_acleaning.model.LoginRequestTech
 import com.uc.alp_vp_acleaning.model.LoginResponse
 import com.uc.alp_vp_acleaning.repository.LoginRepository
-import com.uc.alp_vp_acleaning.view.CustomerHomeFragment.Companion.loginCustId
 import com.uc.alp_vp_acleaning.viewmodel.CustomerViewModel
 import com.uc.alp_vp_acleaning.viewmodel.LoginViewModel
 import com.uc.alp_vp_acleaning.viewmodel.TechnicianViewModel
@@ -20,8 +20,8 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
     private lateinit var viewBind: ActivityLoginBinding
-    private lateinit var viewModel: LoginViewModel
-
+    private lateinit var viewModel: CustomerViewModel
+    private lateinit var viewModelTech: TechnicianViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,9 +40,7 @@ class LoginActivity : AppCompatActivity() {
                     it.context.startActivity(intent)
                 }
                 buttonLogin.setOnClickListener {
-                    val intent = Intent(it.context, MainActivity::class.java)
-                    intent.putExtra("role", 1)
-                    it.context.startActivity(intent)
+                    cekTech()
                 }
             }
         } else {
@@ -65,101 +63,144 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun cekCust() {
-        binding.button_login.setOnClickListener {
-            val username = binding.loginUsername.text.toString().trim()
-            val password = binding.loginPass.text.toString().trim()
+        val username = viewBind.loginUsername.text.toString().trim()
+        val password = viewBind.loginPass.text.toString().trim()
 
-            val loginrequest = LoginRequest(username, password)
-            var isCompleted: Boolean = true
+//            val loginrequest = LoginRequestCust(username, password)
+        var isCompleted: Boolean = true
 
-            // username
-            if (loginrequest.username.isEmpty()) {
-                username.error = "Please fill your username"
-                isCompleted = false
-            } else {
-                password.error = ""
-            }
+        // username
+        if (username.isEmpty()) {
+            viewBind.loginUsername.error = "Please fill your username"
+            isCompleted = false
+        } else {
+            viewBind.loginUsername.error = ""
+        }
 
-            // password
-            if (loginrequest.password.isEmpty()) {
-                loginPass.error = "Please fill your password"
-                isCompleted = false
-            } else {
-                loginPass.error = ""
-            }
+        // password
+        if (password.isEmpty()) {
+            viewBind.loginPass.error = "Please fill your password"
+            isCompleted = false
+        } else {
+            viewBind.loginPass.error = ""
+        }
 
-            if (isCompleted) {
+        if (isCompleted) {
 //                viewModel = ViewModelProvider(this@LoginActivity).get(LoginViewModel::class.java)
-                //viewModel.loginResponse.observe(this@LoginActivity, Observer { response ->
+            //viewModel.loginResponse.observe(this@LoginActivity, Observer { response ->
 //                    Log.e("login", response.toString())
-                //loginCustVM(loginrequest)
-                //}
+            //loginCustVM(loginrequest)
+            //}
 //                private val repository: LoginRepository
 
 //                doneCust()
-                viewModel = ViewModelProvider(this).get(CustomerViewModel::class.java)
-                viewModel.LoginRequest(username, password)
-                    .enqueue(object : retrofit2.Callback<LoginRequest> {
-                        override fun onResponse(
-                            call: retrofit2.Call<LoginRequest>,
-                            response: retrofit2.Response<LoginRequest>
-                        ) {
-                            if (response.isSuccessful) {
-                                val myIntent = Intent(this@LoginActivity, CustomerHomeFragment::class.java)
-                                Toast.makeText(
-                                    this@LoginActivity,
-                                    response.body()?.id,
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                myIntent.putExtra("loginCustId", response.body()?.toInt())
-                                startActivity(myIntent)
-                                Toast.makeText(
-                                    this@LoginActivity,
-                                    "Login Berhasil",
-                                    Toast.LENGTH_SHORT
-                                )
-                                    .show()
-                                finish()
-                            } else {
-                                Toast.makeText(
-                                    this@LoginActivity,
-                                    "Login Gagal",
-                                    Toast.LENGTH_SHORT
-                                )
-                                    .show()
-                            }
-                        }
+            viewModel = ViewModelProvider(this@LoginActivity).get(CustomerViewModel::class.java)
+            viewModel.loginCustomerVM(username, password)
+                .enqueue(object : retrofit2.Callback<LoginRequestCust> {
+                    override fun onResponse(
+                        call: retrofit2.Call<LoginRequestCust>,
+                        response: retrofit2.Response<LoginRequestCust>
+                    ) {
+                        if (response.isSuccessful) {
+                            val myIntent = Intent(this@LoginActivity, MainActivity::class.java)
 
-                        override fun onFailure(call: retrofit2.Call<button_login>, t: Throwable) {
-                            Log.d("TAG", "onFailure: ${t.message}")
+                            Toast.makeText(
+                                this@LoginActivity,
+                                response.body()?.c_id,
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                            myIntent.putExtra("loginCustId", response.body()?.c_id?.toInt())
+                            myIntent.putExtra("role", 0)
+                            startActivity(myIntent)
+                            Toast.makeText(
+                                this@LoginActivity,
+                                "Login Berhasil",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                            finish()
+                        } else {
+                            Toast.makeText(
+                                this@LoginActivity,
+                                "Login Gagal",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
                         }
-                    })
-            }
+                    }
+
+                    override fun onFailure(call: retrofit2.Call<LoginRequestCust>, t: Throwable) {
+                        Log.d("TAG", "onFailure: ${t.message}")
+                    }
+                })
+        }
+    }
+
+    private fun cekTech() {
+        val username = viewBind.loginUsername.text.toString().trim()
+        val password = viewBind.loginPass.text.toString().trim()
+
+//            val loginrequest = LoginRequestCust(username, password)
+        var isCompleted: Boolean = true
+
+        // username
+        if (username.isEmpty()) {
+            viewBind.loginUsername.error = "Please fill your username"
+            isCompleted = false
+        } else {
+            viewBind.loginUsername.error = ""
         }
 
+        // password
+        if (password.isEmpty()) {
+            viewBind.loginPass.error = "Please fill your password"
+            isCompleted = false
+        } else {
+            viewBind.loginPass.error = ""
+        }
 
-//    fun loginCustVM(loginRequest: LoginRequest) = launch {
-//
-//        private val _loginResponse = MutableLiveData<LoginResponse>()
-//        val loginResponse: LiveData<LoginResponse> = _loginResponse
-//        repository.loginCustomer(loginRequest).let { response ->
-//            if (response.body()?.message === "Login successful" && response.isSuccessful) {
-//                _loginResponse.postValue(
-//                    response.body() as
-//                            LoginResponse
-//                )
-//                Log.e("ini login cust","Beerhsl!")
-//            } else {
-//                Log.e("Login Customer", "Failed!")
-//            }
-//        }
-//    }
+        if (isCompleted) {
+            viewModelTech = ViewModelProvider(this@LoginActivity).get(TechnicianViewModel::class.java)
+            viewModelTech.loginTechVM(username, password)
+                .enqueue(object : retrofit2.Callback<LoginRequestTech> {
+                    override fun onResponse(
+                        call: retrofit2.Call<LoginRequestTech>,
+                        response: retrofit2.Response<LoginRequestTech>
+                    ) {
+                        if (response.isSuccessful) {
+                            val myIntent = Intent(this@LoginActivity, MainActivity::class.java)
 
-//    private fun doneCust(){
-//        val intent = Intent(this, MainActivity::class.java)
-//        intent.putExtra("role", 0)
-//        startActivity(intent)
-//        finish()
-//    }
+                            Toast.makeText(
+                                this@LoginActivity,
+                                response.body()?.t_id,
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                            myIntent.putExtra("loginTechId", response.body()?.t_id?.toInt())
+                            myIntent.putExtra("role", 1)
+                            startActivity(myIntent)
+                            Toast.makeText(
+                                this@LoginActivity,
+                                "Login Berhasil",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                            finish()
+                        } else {
+                            Toast.makeText(
+                                this@LoginActivity,
+                                "Login Gagal",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
+                    }
+
+                    override fun onFailure(call: retrofit2.Call<LoginRequestTech>, t: Throwable) {
+                        Log.d("TAG", "onFailure: ${t.message}")
+                    }
+                })
+        }
     }
 }

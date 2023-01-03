@@ -9,18 +9,19 @@ import android.widget.RadioGroup
 import android.widget.Toast
 import com.uc.alp_vp_acleaning.R
 import com.uc.alp_vp_acleaning.databinding.FragmentCustomerHomeBinding
+import com.uc.alp_vp_acleaning.databinding.FragmentTechnicianHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class TechnicianHomeFragment : Fragment() {
 
-    private lateinit var binding : FragmentCustomerHomeBinding
+    private lateinit var binding : FragmentTechnicianHomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentCustomerHomeBinding.inflate(inflater, container, false)
+        binding = FragmentTechnicianHomeBinding.inflate(inflater, container, false)
 
         // Inflate the layout for this fragment
         return binding.root

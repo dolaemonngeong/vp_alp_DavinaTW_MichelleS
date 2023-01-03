@@ -17,6 +17,7 @@ import com.uc.alp_vp_acleaning.adapter.TechnicianAdapter
 import com.uc.alp_vp_acleaning.databinding.FragmentCustomerOrdersBinding
 import com.uc.alp_vp_acleaning.model.Order
 import com.uc.alp_vp_acleaning.model.Technician
+import com.uc.alp_vp_acleaning.view.MainActivity.Companion.loginCustId
 import com.uc.alp_vp_acleaning.viewmodel.OrderViewModel
 import com.uc.alp_vp_acleaning.viewmodel.TechnicianViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,6 +36,7 @@ class CustomerOrdersFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        loginCustId
         binding = FragmentCustomerOrdersBinding.inflate(inflater, container, false)
 
         // Inflate the layout for this fragment

@@ -9,10 +9,12 @@ import retrofit2.http.*
 
 
 interface EndPointApi {
-    @POST("/login-techician")
-    suspend fun loginTechnician(
-        @Body loginRequest: LoginRequest
-    ): Deferred<Response<LoginResponse>>
+    @FormUrlEncoded
+    @POST("/login-technician")
+    fun loginTechnician(
+        @Field("username") username: String,
+        @Field("password") password: String,
+    ): Call<LoginRequestTech>
 
     @GET("/technician-all")
     suspend fun getTechnician(
@@ -21,7 +23,7 @@ interface EndPointApi {
     @GET("/technician-by-id/{t_id}")
     suspend fun getTechnicianById(
         @Path("t_id") t_id: Int
-    ): Response<TechnicianData>
+    ): Response<TechnicianItem>
 
 //    @GET("/technician-all")
 //    suspend fun getTechnician1(
@@ -39,49 +41,21 @@ interface EndPointApi {
 
     @PUT("/technician/{t_id}")
     suspend fun deleteTechnician(
-//        val c_id: Int,
-//        val email: String,
-//        val name: String,
-//        val password: String,
-//        val phone: String,
-//        val status: String,
-//        val username: String
         @Path("t_id") t_id: Int
     ): Response<TechnicianData>
 
     @POST("/technician")
     suspend fun createTechnician(
-//        val c_id: Int,
-//        val email: String,
-//        val name: String,
-//        val password: String,
-//        val phone: String,
-//        val status: String,
-//        val username: String
         @Body technician: Technician
     ): Response<Technician>
 
     @PATCH("/technician/{t_id}")
     suspend fun updateTechnician(
-//        val c_id: Int,
-//        val email: String,
-//        val name: String,
-//        val password: String,
-//        val phone: String,
-//        val status: String,
-//        val username: String
         @Body technician: Technician
     ): Response<Technician>
 
     @PATCH("/technician/{t_id}/{rete}")
     suspend fun updateRate(
-//        val c_id: Int,
-//        val email: String,
-//        val name: String,
-//        val password: String,
-//        val phone: String,
-//        val status: String,
-//        val username: String
         @Path("t_id") t_id: Int,
         @Path("rate") rate: Int
     ): Response<Technician>
@@ -91,7 +65,7 @@ interface EndPointApi {
     fun loginCustomer(
         @Field("username") username: String,
         @Field("password") password: String,
-    ): Call<LoginRequest>
+    ): Call<LoginRequestCust>
 
     @GET("/customer")
     suspend fun getCustomer(

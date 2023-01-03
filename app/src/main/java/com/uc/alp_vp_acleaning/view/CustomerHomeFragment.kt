@@ -19,6 +19,8 @@ import com.uc.alp_vp_acleaning.adapter.TechnicianAdapter
 import com.uc.alp_vp_acleaning.databinding.FragmentCustomerHomeBinding
 import com.uc.alp_vp_acleaning.model.Kecamatan
 import com.uc.alp_vp_acleaning.model.KecamatanItem1
+import com.uc.alp_vp_acleaning.view.MainActivity.Companion.loginCustId
+import com.uc.alp_vp_acleaning.viewmodel.CustomerViewModel
 import com.uc.alp_vp_acleaning.viewmodel.KecamatanViewModel
 import com.uc.alp_vp_acleaning.viewmodel.TechnicianViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,28 +37,16 @@ class CustomerHomeFragment : Fragment() {
     private lateinit var bottomSheetDialog: BottomSheetDialog
     private lateinit var viewModelTech : TechnicianViewModel
     private lateinit var viewModelKecamatan: KecamatanViewModel
+    private lateinit var viewModelCustomer: CustomerViewModel
 
 //    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("c_id")
 
-    companion object{
-        var loginCustId = 0
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentCustomerHomeBinding.inflate(inflater, container, false)
-        loginCustId = intent.getIntExtra("loginCustId", 0)
-
-        // Inflate the layout for this fragment
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
+        binding = FragmentCustomerHomeBinding.inflate(layoutInflater)
         binding.filterButton.setOnClickListener{
 //            Toast.makeText(activity, "ini filter", Toast.LENGTH_SHORT).show()
             val dialogView = layoutInflater.inflate(R.layout.button_filter, null)
@@ -89,6 +79,15 @@ class CustomerHomeFragment : Fragment() {
             adapterTechnician = TechnicianAdapter(response, kecamatan)
             binding.rvAllTech.adapter = adapterTechnician
         })
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+
 
     }
 

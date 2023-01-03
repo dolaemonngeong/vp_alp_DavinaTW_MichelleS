@@ -31,16 +31,16 @@ class TechnicianDetailActivity : AppCompatActivity() {
         viewModel.getTechnicianDetails(t_id)
         viewModel.technicianDetails.observe(this, Observer { response ->
 //            if (t_id <= response.size) {
-                bind.displayNameTech.text = response[0].t_name
+                bind.displayNameTech.text = response.t_name
                 bind.displayDistrictTech.apply {
-                    text = response[0].Kecamatan.kecamatan_name
+                    text = response.Kecamatan.kecamatan_name
                 }
                 bind.displayRateTech.apply {
-                    text = response[0].rate.toString()
+                    text = response.rate.toString()
                 }
                 bind.chatBtn.setOnClickListener {
                     val url =
-                        "https://api.whatsapp.com/send?phone=" + response[0].phone + "&text=Halo%Perkenalkan%Nama%20Di%20Saya%20..."
+                        "https://api.whatsapp.com/send?phone=" + response.phone + "&text=Halo%Perkenalkan%Nama%20Di%20Saya%20..."
                     val intent = Intent(Intent.ACTION_VIEW)
                     intent.data = Uri.parse(url)
                     startActivity(intent)

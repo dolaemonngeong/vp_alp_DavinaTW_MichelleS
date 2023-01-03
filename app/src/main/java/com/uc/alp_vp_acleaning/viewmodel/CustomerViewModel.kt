@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.uc.alp_vp_acleaning.model.CustomerData
 import com.uc.alp_vp_acleaning.model.CustomerItem
+import com.uc.alp_vp_acleaning.model.TechnicianItem
 import com.uc.alp_vp_acleaning.repository.CustomerRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -16,24 +17,21 @@ import javax.inject.Inject
 
 class CustomerViewModel @Inject constructor(private val repository: CustomerRepository) :
     ViewModel() {
-
+    //
     //login Customer
-    suspend fun loginCustomer(username: String, password: String) =
-        repository.getCustomerResult(username, password)
+    fun loginCustomerVM(username: String, password: String) =
+        repository.loginCust(username, password)
 
-    //Get Customer
-    private val _customer: MutableLiveData<CustomerItem> by lazy {
+    val _customerLogin: MutableLiveData<CustomerItem> by lazy {
         MutableLiveData<CustomerItem>()
     }
-    val customer: LiveData<CustomerItem> get() = _customer
+    val customerLogin: LiveData<CustomerItem> get() = _customerLogin
 
-    fun getCustomerById(c_id:Int) = viewModelScope.launch {
-        repository.getUserById(c_id).let{
-            response ->
-            if (response.isSuccessful){
-                _user.postValue(response.body())
-            }
-            else{
+    fun getCustomerById(c_id: Int) = viewModelScope.launch {
+        repository.getCustById(c_id).let { response ->
+            if (response.isSuccessful) {
+                _customerLogin.postValue(response.body())
+            } else {
                 Log.e("Get Data", "Failed!")
             }
         }
@@ -50,6 +48,13 @@ class CustomerViewModel @Inject constructor(private val repository: CustomerRepo
 //            }
 //        }
 //    }
+
+
+    //Get Customer buat create
+    val _customer: MutableLiveData<CustomerData> by lazy {
+        MutableLiveData<CustomerData>()
+    }
+    val customer: LiveData<CustomerData> get() = _customer
 
     //create customer
     fun createCustomerVM(customer: CustomerItem) = viewModelScope.launch {

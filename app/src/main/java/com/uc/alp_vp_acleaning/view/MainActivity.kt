@@ -23,6 +23,11 @@ import java.util.prefs.Preferences
 class MainActivity : AppCompatActivity() {
     lateinit var viewBind: ActivityMainBinding
     lateinit var toggle: ActionBarDrawerToggle
+
+    companion object{
+        var loginCustId = 0
+        var loginTechId = 0
+    }
 //    private val Context.datacust: DataStore<Preferences> by preferencesDataStore("dataid")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +62,11 @@ class MainActivity : AppCompatActivity() {
 //                }
 
             val tech = intent.getIntExtra("role", 1)
+
+            loginTechId = intent.getIntExtra("loginTechId", 0)
+
+            loginCustId = intent.getIntExtra("loginCustId", 0)
+            Toast.makeText(this@MainActivity, "cust id: $loginCustId", Toast.LENGTH_SHORT).show()
             if (tech == 1) {
                 changeFragment(TechnicianHomeFragment())
                 navView.menu.findItem(R.id.nav_order).setVisible(false)
@@ -64,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                     when (it.itemId) {
                         R.id.nav_home -> {
 //                        Log.d("test1", it.itemId.toString())
-                            Toast.makeText(baseContext, "ini home", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(baseContext, "ini home tech", Toast.LENGTH_SHORT).show()
                             changeFragment(TechnicianHomeFragment())
                         }
 
