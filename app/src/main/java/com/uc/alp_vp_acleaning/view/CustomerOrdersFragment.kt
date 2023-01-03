@@ -44,17 +44,17 @@ class CustomerOrdersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModelOrder = ViewModelProvider(this).get(OrderViewModel::class.java)
-        viewModelOrder.getOrderData()
-
-        viewModelOrder.order.observe(viewLifecycleOwner, Observer { response ->
-            Log.e("Customer Order", response.toString())
-            binding.rvOrders.layoutManager = LinearLayoutManager(context)
-//            val order = ArrayList<Order>()
-            adapterOrder = OrderAdapter(response)
-            binding.rvOrders.adapter = adapterOrder
-        })
-        bottomSheetDialog.show()
+//        viewModelOrder = ViewModelProvider(this).get(OrderViewModel::class.java)
+//        viewModelOrder.getOrderData()
+//
+//        viewModelOrder.order.observe(viewLifecycleOwner, Observer { response ->
+//            Log.e("Customer Order", response.toString())
+//            binding.rvOrders.layoutManager = LinearLayoutManager(context)
+////            val order = ArrayList<Order>()
+//            adapterOrder = OrderAdapter(response)
+//            binding.rvOrders.adapter = adapterOrder
+//        })
+//        bottomSheetDialog.show()
 
     }
 }

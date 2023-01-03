@@ -15,10 +15,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class OrderViewModel @Inject constructor(private val repository: OrderRepository):
-    ViewModel(){
+    ViewModel() {
 
     //get Technician
-    val _order:MutableLiveData<ArrayList<OrderItem>> by lazy{
+    val _order: MutableLiveData<ArrayList<OrderItem>> by lazy {
         MutableLiveData<ArrayList<OrderItem>>()
     }
 
@@ -26,31 +26,31 @@ class OrderViewModel @Inject constructor(private val repository: OrderRepository
 
     fun getOrderData() = viewModelScope.launch {
 
-        repository.getOrderResult().let {
-                response ->
+        repository.getOrderResult().let { response ->
             //ikti movie
-            if (response.isSuccessful){
+            if (response.isSuccessful) {
                 _order.postValue(response.body()?.data as ArrayList<OrderItem>?)
-            } else{
+            } else {
                 Log.e("Get Data", "Failed!")
             }
 
-    //Get Order Details Data
-    val _orderDetails: MutableLiveData<ArrayList<OrderItem>> by lazy {
-        MutableLiveData<ArrayList<OrderItem>>()
-    }
-
-    val orderDetails: LiveData<ArrayList<OrderItem>> get() = _orderDetails
-
-    fun getOrderDetails(t_id: Int) = viewModelScope.launch {
-        repository.getOrderDetailsData(t_id).let {
-                response ->
-            if (response.isSuccessful){
-                _orderDetails.postValue(response.body()?.data as ArrayList<OrderItem>?)
-            } else{
-                Log.e("Get Order Details Data", "Failed!")
+            //Get Order Details Data
+            val _orderDetails: MutableLiveData<ArrayList<OrderItem>> by lazy {
+                MutableLiveData<ArrayList<OrderItem>>()
             }
+
+//    val orderDetails: LiveData<ArrayList<OrderItem>> get() = _orderDetails
+
+            fun getOrderDetails(t_id: Int) = viewModelScope.launch {
+                repository.getOrderDetailsData(t_id).let { response ->
+                    if (response.isSuccessful) {
+                        _orderDetails.postValue(response.body()?.data as ArrayList<OrderItem>?)
+                    } else {
+                        Log.e("Get Order Details Data", "Failed!")
+                    }
+                }
+            }
+
         }
     }
-
 }

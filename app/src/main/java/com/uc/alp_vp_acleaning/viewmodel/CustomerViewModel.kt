@@ -5,17 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.uc.alp_vp_acleaning.model.Customer
 import com.uc.alp_vp_acleaning.model.CustomerData
 import com.uc.alp_vp_acleaning.model.CustomerItem
 import com.uc.alp_vp_acleaning.repository.CustomerRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,11 +17,27 @@ import javax.inject.Inject
 class CustomerViewModel @Inject constructor(private val repository: CustomerRepository) :
     ViewModel() {
 
+    //login Customer
+    suspend fun loginCustomer(username: String, password: String) =
+        repository.getCustomerResult(username, password)
+
     //Get Customer
-    private val _customer: MutableLiveData<CustomerData> by lazy {
-        MutableLiveData<CustomerData>()
+    private val _customer: MutableLiveData<CustomerItem> by lazy {
+        MutableLiveData<CustomerItem>()
     }
-    val customer: LiveData<CustomerData> get() = _customer
+    val customer: LiveData<CustomerItem> get() = _customer
+
+    fun getCustomerById(c_id:Int) = viewModelScope.launch {
+        repository.getUserById(c_id).let{
+            response ->
+            if (response.isSuccessful){
+                _user.postValue(response.body())
+            }
+            else{
+                Log.e("Get Data", "Failed!")
+            }
+        }
+    }
 
 //    fun getCustomerData() = viewModelScope.launch {
 //        repository.getCustomerResult().let {

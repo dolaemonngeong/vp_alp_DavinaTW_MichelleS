@@ -5,7 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.uc.alp_vp_acleaning.R
+import com.uc.alp_vp_acleaning.databinding.FragmentCustomerProfileBinding
+import com.uc.alp_vp_acleaning.view.CustomerHomeFragment.Companion.loginCustId
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,6 +39,33 @@ class CustomerProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentCustomerProfileBinding.inflate(layoutInflater)
+        if(loginCustId != 0){
+            viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+            viewModel.getUserById(loginCustId)
+            Toast.makeText(context, "Login ID: $loginCustId", Toast.LENGTH_SHORT).show()
+
+            viewModel.customer.observe(viewLifecycleOwner, Observer{
+                response ->
+                Toast.makeText(context, "name" +response.name, Toast.LENGTH_SHORT).show()
+                binding.name_cust.apply{
+                    text = response.name
+                }
+                binding.uname.cust.apply{
+                    text = response.username
+                }
+                binding.phone.cust.apply{
+                    text = response.phone
+                }
+                binding.email_cust.apply{
+                    text = response.email
+                }
+                binding.pass_cust.apply{
+                    text = response.password
+                }
+
+            })
+        }
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_customer_profile, container, false)
     }

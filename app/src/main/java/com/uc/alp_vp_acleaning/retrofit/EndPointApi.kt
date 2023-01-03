@@ -88,10 +88,10 @@ interface EndPointApi {
 
     @FormUrlEncoded
     @POST("/login-customer")
-    suspend fun loginCustomer(
+    fun loginCustomer(
         @Field("username") username: String,
         @Field("password") password: String,
-    ): Response<LoginResponse>
+    ): Call<LoginRequest>
 
     @GET("/customer")
     suspend fun getCustomer(
@@ -99,7 +99,8 @@ interface EndPointApi {
 
     @GET("/customer-by-id/{c_id}")
     suspend fun getCustomerByID(
-    ): Response<JsonObject>
+        @Path("c_id") c_id: Int
+    ): Response<CustomerItem>
 
     @FormUrlEncoded
     @POST("/customer")
@@ -132,7 +133,7 @@ interface EndPointApi {
     ): Response<Customer>
 
     @PUT("/customer/{c_id")
-    suspend fun deleteteCustomer(
+    suspend fun deleteCustomer(
 //        val c_id: Int,
 //        val email: String,
 //        val name: String,

@@ -38,11 +38,16 @@ class CustomerHomeFragment : Fragment() {
 
 //    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("c_id")
 
+    companion object{
+        var loginCustId = 0
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCustomerHomeBinding.inflate(inflater, container, false)
+        loginCustId = intent.getIntExtra("loginCustId", 0)
 
         // Inflate the layout for this fragment
         return binding.root
