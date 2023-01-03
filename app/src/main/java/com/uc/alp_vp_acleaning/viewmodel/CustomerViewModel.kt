@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.uc.alp_vp_acleaning.model.CustomerData
 import com.uc.alp_vp_acleaning.model.CustomerItem
+import com.uc.alp_vp_acleaning.model.OrderItem
 import com.uc.alp_vp_acleaning.model.TechnicianItem
 import com.uc.alp_vp_acleaning.repository.CustomerRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -37,19 +38,6 @@ class CustomerViewModel @Inject constructor(private val repository: CustomerRepo
         }
     }
 
-//    fun getCustomerData() = viewModelScope.launch {
-//        repository.getCustomerResult().let {
-//                response ->
-//            if (response.isSuccessful){
-//                _customer.postValue(response.body() as
-//                        CustomerData)
-//            } else{
-//                Log.e("Get Data", "Failed!")
-//            }
-//        }
-//    }
-
-
     //Get Customer buat create
     val _customer: MutableLiveData<CustomerData> by lazy {
         MutableLiveData<CustomerData>()
@@ -66,6 +54,25 @@ class CustomerViewModel @Inject constructor(private val repository: CustomerRepo
                 )
             } else {
                 Log.e("Create Data", "Failed!")
+            }
+        }
+    }
+
+    //cust order
+    val _order: MutableLiveData<ArrayList<OrderItem>> by lazy {
+        MutableLiveData<ArrayList<OrderItem>>()
+    }
+
+    val order: LiveData<ArrayList<OrderItem>> get() = _order
+
+    fun getTechnicianData(c_id, status) = viewModelScope.launch {
+
+        repository.getOrderStatus().let { response ->
+            //ikti movie
+            if (response.isSuccessful) {
+                _order.postValue(response.body()?.data as ArrayList<OrderItem>?)
+            } else {
+                Log.e("Get Data", "Failed!")
             }
         }
     }

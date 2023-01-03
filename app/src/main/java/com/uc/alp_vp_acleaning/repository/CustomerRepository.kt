@@ -12,5 +12,5 @@ class CustomerRepository @Inject constructor(private  val api: EndPointApi){
 
     suspend fun getCustById(c_id: Int) = api.getCustomerByID(c_id)
 
-    suspend fun getCustomerResult(username: String, password: String) = api.getCustomer()
+    suspend fun getOrderStatus(c_id: Int, status:String) = api.orderCustomer(c_id, status)
 }

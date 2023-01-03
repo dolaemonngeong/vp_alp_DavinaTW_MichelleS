@@ -67,9 +67,6 @@ class CustomerHomeFragment : Fragment() {
         }
 
         viewModelTech = ViewModelProvider(this).get(TechnicianViewModel::class.java)
-//        viewModelTech = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(
-//            Application()
-//        )).get(TechnicianViewModel::class.java)
         viewModelTech.getTechnicianData()
 
         viewModelTech.technician.observe(viewLifecycleOwner, Observer{ response->

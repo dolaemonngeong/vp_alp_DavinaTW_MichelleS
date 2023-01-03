@@ -123,7 +123,7 @@ interface EndPointApi {
     suspend fun orderCustomer(
         @Path("c_id") c_id: Int,
         @Path("status") status: String
-    ): Response<Order>
+    ): Response<OrderData>
 
     @GET("/technician-order/{t_id}/{status}")
     suspend fun orderTechnician(

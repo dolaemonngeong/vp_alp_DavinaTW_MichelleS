@@ -15,6 +15,7 @@ import com.uc.alp_vp_acleaning.R
 import com.uc.alp_vp_acleaning.adapter.OrderAdapter
 import com.uc.alp_vp_acleaning.adapter.TechnicianAdapter
 import com.uc.alp_vp_acleaning.databinding.FragmentCustomerOrdersBinding
+import com.uc.alp_vp_acleaning.model.Kecamatan
 import com.uc.alp_vp_acleaning.model.Order
 import com.uc.alp_vp_acleaning.model.Technician
 import com.uc.alp_vp_acleaning.view.MainActivity.Companion.loginCustId
@@ -29,7 +30,6 @@ class CustomerOrdersFragment : Fragment() {
     private lateinit var viewModel: OrderViewModel
     private lateinit var adapterOrder: Order
     private lateinit var adapterTechnician: Technician
-    private lateinit var bottomSheetDialog: BottomSheetDialog
     private lateinit var viewModelOrder: Order
 
     override fun onCreateView(
@@ -38,25 +38,24 @@ class CustomerOrdersFragment : Fragment() {
     ): View? {
         loginCustId
         binding = FragmentCustomerOrdersBinding.inflate(inflater, container, false)
+        
+        viewModelOrder = ViewModelProvider(this).get(TechnicianViewModel::class.java)
+        viewModelOrder.get()
 
-        // Inflate the layout for this fragment
+        viewModelOrder.technician.observe(viewLifecycleOwner, Observer{ response->
+            Log.e("Technician name", response.toString())
+            binding.rvAllTech.layoutManager = LinearLayoutManager(context)
+            val kecamatan = ArrayList<Kecamatan>()
+            adapterTechnician = TechnicianAdapter(response, kecamatan)
+            binding.rvAllTech.adapter = adapterTechnician
+        })
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        viewModelOrder = ViewModelProvider(this).get(OrderViewModel::class.java)
-//        viewModelOrder.getOrderData()
-//
-//        viewModelOrder.order.observe(viewLifecycleOwner, Observer { response ->
-//            Log.e("Customer Order", response.toString())
-//            binding.rvOrders.layoutManager = LinearLayoutManager(context)
-////            val order = ArrayList<Order>()
-//            adapterOrder = OrderAdapter(response)
-//            binding.rvOrders.adapter = adapterOrder
-//        })
-//        bottomSheetDialog.show()
+        
 
     }
 }
