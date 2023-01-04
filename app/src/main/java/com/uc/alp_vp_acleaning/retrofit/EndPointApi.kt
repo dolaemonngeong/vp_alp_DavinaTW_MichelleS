@@ -2,7 +2,6 @@ package com.uc.alp_vp_acleaning.retrofit
 
 import com.google.gson.JsonObject
 import com.uc.alp_vp_acleaning.model.*
-import kotlinx.coroutines.Deferred
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
@@ -123,13 +122,13 @@ interface EndPointApi {
     suspend fun orderCustomer(
         @Path("c_id") c_id: Int,
         @Path("status") status: String
-    ): Response<OrderData>
+    ): Response<OrderDataRead>
 
     @GET("/technician-order/{t_id}/{status}")
     suspend fun orderTechnician(
         @Path("t_id") t_id: Int,
         @Path("status") status: String
-    ): Response<OrderData>
+    ): Response<OrderDataRead>
 
     //semua order enda perlu tampaknya
 //    @GET("/order")
@@ -138,12 +137,17 @@ interface EndPointApi {
 
     @POST("/order")
     suspend fun createOrder(
+        @Query("o_id") o_id: String,
         @Query("name") name: String,
         @Query("address") address: String,
         @Query("phone") phone: String,
         @Query("time") time: String,
-//        @Body order: Order
-    ): Response<Order>
+        @Query("date") date: String,
+        @Query("note") note: String,
+        @Query("t_id") t_id: Int,
+        @Query("c_id") c_id: Int,
+        @Query("status") status: String,
+    ): Response<OrderData>
 
     //update status order dr pending -> on-going -> completed
     @PATCH("/order")
@@ -153,7 +157,7 @@ interface EndPointApi {
 
     @GET("/order-all")
     suspend fun getOrderData(
-    ): Response<OrderData>
+    ): Response<OrderDataRead>
 
     @GET("/order-by-id/{o_id}")
     suspend fun getOrderById(

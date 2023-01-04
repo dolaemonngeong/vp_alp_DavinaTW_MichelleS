@@ -5,8 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.uc.alp_vp_acleaning.model.OrderItem
-import com.uc.alp_vp_acleaning.model.TechnicianItem
+import com.uc.alp_vp_acleaning.model.*
 import com.uc.alp_vp_acleaning.repository.OrderRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -16,6 +15,26 @@ import javax.inject.Inject
 @HiltViewModel
 class OrderViewModel @Inject constructor(private val repository: OrderRepository) :
     ViewModel() {
+    //get Order
+    val _ordercreate: MutableLiveData<OrderData> by lazy {
+        MutableLiveData<OrderData>()
+    }
+
+    val ordercreate: LiveData<OrderData> get() = _ordercreate
+
+    //create order
+    fun createOrderVM(order: OrderItemCreate) = viewModelScope.launch {
+        repository.createOrderResult(order).let { response ->
+            if (response.isSuccessful) {
+                _ordercreate.postValue(
+                    response.body() as
+                            OrderData
+                )
+            } else {
+                Log.e("Create Data", "Failed!")
+            }
+        }
+    }
 
     //get Order
     val _order: MutableLiveData<ArrayList<OrderItem>> by lazy {

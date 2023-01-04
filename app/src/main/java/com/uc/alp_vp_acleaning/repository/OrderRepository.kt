@@ -1,14 +1,18 @@
 package com.uc.alp_vp_acleaning.repository
 
+import com.uc.alp_vp_acleaning.model.OrderItemCreate
 import com.uc.alp_vp_acleaning.retrofit.EndPointApi
 import javax.inject.Inject
 
 class OrderRepository @Inject constructor(private val api: EndPointApi) {
 //    suspend fun getOrderResult() = api.getOrderData()
     suspend fun getOrderTechStatus(t_id:Int, status:String) = api.orderTechnician(t_id,status)
+
     suspend fun getOrderCustomerStatus(c_id:Int, status:String) = api.orderCustomer(c_id,status)
+
     suspend fun getOrderDetailsData(o_id: Int) = api.getOrderById(o_id)
 
+    suspend fun createOrderResult(o:OrderItemCreate) = api.createOrder("",o.name, o.address, o.phone, o.time, o.date, o.note, o.t_id, o.c_id, o.status)
 //    private fun convertJsonToTechnicians(json: JsonObject): List<Technician> {
 //        val technicians = mutableListOf<Technician>()
 //
