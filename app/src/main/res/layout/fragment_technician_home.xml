@@ -131,14 +131,14 @@
 
                 </RadioGroup>
 
-                <ListView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/list_order"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="699dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/rgStatus"
-                    app:layout_constraintTop_toBottomOf="@id/rgStatus" >
-
-                </ListView>
+                    app:layout_constraintTop_toBottomOf="@id/rgStatus"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

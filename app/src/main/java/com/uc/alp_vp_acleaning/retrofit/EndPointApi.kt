@@ -128,7 +128,8 @@ interface EndPointApi {
     @GET("/technician-order/{t_id}/{status}")
     suspend fun orderTechnician(
         @Path("t_id") t_id: Int,
-    ): Response<Order>
+        @Path("status") status: String
+    ): Response<OrderData>
 
     //semua order enda perlu tampaknya
 //    @GET("/order")
@@ -157,7 +158,7 @@ interface EndPointApi {
     @GET("/order-by-id/{o_id}")
     suspend fun getOrderById(
         @Path("o_id") o_id: Int
-    ): Response<OrderData>
+    ): Response<OrderItem>
 
     @GET("/kecamatan")
     suspend fun getKecamatan(

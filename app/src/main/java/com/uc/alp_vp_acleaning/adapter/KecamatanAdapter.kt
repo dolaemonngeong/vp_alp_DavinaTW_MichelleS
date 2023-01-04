@@ -35,6 +35,12 @@ class KecamatanAdapter(private val dataSet: ArrayList<KecamatanItem1>) :
         return ViewHolder(view)
     }
 
+//    override fun getItemCount(): Int = selectedItems.size
+//
+//    override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
+//        holder.bind(selectedItems[position])
+//    }
+
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
 

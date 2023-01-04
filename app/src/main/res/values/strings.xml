@@ -7,5 +7,6 @@
     <string name="register_no">Register Now</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+<!--    <string name="apply_filter">Apply Filter</string>-->
 
 </resources>

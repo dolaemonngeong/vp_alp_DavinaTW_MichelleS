@@ -33,4 +33,7 @@
         </item>
 
     </style>
+
+<!--    <string name="app_name">FilterExample</string>-->
+<!--    <string name="apply_filter">Apply Filter</string>-->
 </resources>

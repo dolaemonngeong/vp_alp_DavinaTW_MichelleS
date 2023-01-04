@@ -59,22 +59,22 @@ class CustomerViewModel @Inject constructor(private val repository: CustomerRepo
     }
 
     //cust order
-    val _order: MutableLiveData<ArrayList<OrderItem>> by lazy {
-        MutableLiveData<ArrayList<OrderItem>>()
-    }
-
-    val order: LiveData<ArrayList<OrderItem>> get() = _order
-
-    fun getTechnicianData(c_id, status) = viewModelScope.launch {
-
-        repository.getOrderStatus().let { response ->
-            //ikti movie
-            if (response.isSuccessful) {
-                _order.postValue(response.body()?.data as ArrayList<OrderItem>?)
-            } else {
-                Log.e("Get Data", "Failed!")
-            }
-        }
+//    val _order: MutableLiveData<ArrayList<OrderItem>> by lazy {
+//        MutableLiveData<ArrayList<OrderItem>>()
+//    }
+//
+//    val order: LiveData<ArrayList<OrderItem>> get() = _order
+//
+//    fun getTechnicianData(c_id, status) = viewModelScope.launch {
+//
+//        repository.getOrderStatus().let { response ->
+//            //ikti movie
+//            if (response.isSuccessful) {
+//                _order.postValue(response.body()?.data as ArrayList<OrderItem>?)
+//            } else {
+//                Log.e("Get Data", "Failed!")
+//            }
+//        }
     }
 //    fun createCustomerVM(customer: CustomerItem) = viewModelScope.launch {
 //        repository.createCustomerResult(customer).enqueue(object : Callback<CustomerData>{
@@ -103,4 +103,4 @@ class CustomerViewModel @Inject constructor(private val repository: CustomerRepo
 //    }
     //
 
-}
+//}

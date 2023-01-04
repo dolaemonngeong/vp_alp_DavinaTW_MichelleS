@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,28 +28,39 @@ import dagger.hilt.android.AndroidEntryPoint
 class CustomerOrdersFragment : Fragment() {
 
     private lateinit var binding: FragmentCustomerOrdersBinding
-    private lateinit var viewModel: OrderViewModel
-    private lateinit var adapterOrder: Order
-    private lateinit var adapterTechnician: Technician
-    private lateinit var viewModelOrder: Order
+    private lateinit var viewModelOrder: OrderViewModel
+    private lateinit var adapterOrder: OrderAdapter
+    private lateinit var adapterTechnician: TechnicianAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        loginCustId
-        binding = FragmentCustomerOrdersBinding.inflate(inflater, container, false)
-        
-        viewModelOrder = ViewModelProvider(this).get(TechnicianViewModel::class.java)
-        viewModelOrder.get()
+//        loginCustId
+        binding = FragmentCustomerOrdersBinding.inflate(layoutInflater)
+        val status = "pending"
+        viewModelOrder = ViewModelProvider(this@CustomerOrdersFragment).get(OrderViewModel::class.java)
 
-        viewModelOrder.technician.observe(viewLifecycleOwner, Observer{ response->
-            Log.e("Technician name", response.toString())
-            binding.rvAllTech.layoutManager = LinearLayoutManager(context)
-            val kecamatan = ArrayList<Kecamatan>()
-            adapterTechnician = TechnicianAdapter(response, kecamatan)
-            binding.rvAllTech.adapter = adapterTechnician
+        viewModelOrder.getOrderCustomerStatusData(loginCustId, status)
+
+        viewModelOrder.order.observe(viewLifecycleOwner, Observer { response ->
+            Log.e("Customer Order", response.toString())
+            binding.rvOrders.layoutManager = LinearLayoutManager(context)
+//            val technician = ArrayList<Technician>()
+            adapterOrder = OrderAdapter(response)
+            binding.rvOrders.adapter = adapterOrder
         })
+        
+//        viewModelOrder = ViewModelProvider(this).get(TechnicianViewModel::class.java)
+//        viewModelOrder.get()
+//
+//        viewModelOrder.technician.observe(viewLifecycleOwner, Observer{ response->
+//            Log.e("Technician name", response.toString())
+//            binding.rvAllTech.layoutManager = LinearLayoutManager(context)
+//            val kecamatan = ArrayList<Kecamatan>()
+//            adapterTechnician = TechnicianAdapter(response, kecamatan)
+//            binding.rvAllTech.adapter = adapterTechnician
+//        })
         return binding.root
     }
 

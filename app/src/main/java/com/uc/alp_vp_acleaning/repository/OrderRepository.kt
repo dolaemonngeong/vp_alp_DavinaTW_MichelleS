@@ -4,9 +4,10 @@ import com.uc.alp_vp_acleaning.retrofit.EndPointApi
 import javax.inject.Inject
 
 class OrderRepository @Inject constructor(private val api: EndPointApi) {
-    suspend fun getOrderResult() = api.getOrderData()
-
-    suspend fun getOrderDetailsData(t_id: Int) = api.getOrderById(t_id)
+//    suspend fun getOrderResult() = api.getOrderData()
+    suspend fun getOrderTechStatus(t_id:Int, status:String) = api.orderTechnician(t_id,status)
+    suspend fun getOrderCustomerStatus(c_id:Int, status:String) = api.orderCustomer(c_id,status)
+    suspend fun getOrderDetailsData(o_id: Int) = api.getOrderById(o_id)
 
 //    private fun convertJsonToTechnicians(json: JsonObject): List<Technician> {
 //        val technicians = mutableListOf<Technician>()

@@ -1,14 +1,20 @@
 package com.uc.alp_vp_acleaning.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.uc.alp_vp_acleaning.R
+import com.uc.alp_vp_acleaning.model.Kecamatan
 import com.uc.alp_vp_acleaning.model.Order
 import com.uc.alp_vp_acleaning.model.OrderItem
+import com.uc.alp_vp_acleaning.model.Technician
+import com.uc.alp_vp_acleaning.view.OrderDetailActivity
+import com.uc.alp_vp_acleaning.view.TechnicianDetailActivity
 
 class OrderAdapter(private val dataSet: ArrayList<OrderItem>) :
 RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
@@ -19,20 +25,18 @@ RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
      */
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView
-        val address: TextView
-        val phone: TextView
+        val status: TextView
         val time: TextView
         val date: TextView
-        val note: TextView
+        val card: CardView
 
         init {
             // Define click listener for the ViewHolder's View.
-            name = view.findViewById(R.id.input_name)
-            address = view.findViewById(R.id.input_address)
-            phone = view.findViewById(R.id.input_phone)
-            time = view.findViewById(R.id.input_time)
-            date = view.findViewById(R.id.input_date)
-            note = view.findViewById(R.id.input_note)
+            name = view.findViewById(R.id.tech_order)
+            status = view.findViewById(R.id.order_status)
+            time = view.findViewById(R.id.order_time)
+            date = view.findViewById(R.id.order_date)
+            card = view.findViewById(R.id.order_cust)
         }
     }
             override fun onCreateViewHolder(
@@ -53,12 +57,15 @@ RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
 
                 // Get element from your dataset at this position and replace the
                 // contents of the view with that element
-                viewHolder.name.text = dataSet[position].name
-                viewHolder.address.text = dataSet[position].address
-                viewHolder.phone.text = dataSet[position].phone
+                viewHolder.name.text = dataSet[position].Technician.t_name
                 viewHolder.time.text = dataSet[position].time
                 viewHolder.date.text = dataSet[position].date
-                viewHolder.note.text = dataSet[position].note.toString()
+                viewHolder.status.text = dataSet[position].note
+                viewHolder.card.setOnClickListener {
+                    val intent = Intent(it.context, OrderDetailActivity::class.java)
+                    intent.putExtra("c_id", dataSet[position].c_id)
+                    it.context.startActivity(intent)
+                }
             }
 
             // Return the size of your dataset (invoked by the layout manager)

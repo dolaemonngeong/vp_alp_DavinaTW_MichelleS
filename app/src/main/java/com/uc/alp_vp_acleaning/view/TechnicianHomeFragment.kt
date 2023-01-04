@@ -1,27 +1,53 @@
 package com.uc.alp_vp_acleaning.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.uc.alp_vp_acleaning.R
-import com.uc.alp_vp_acleaning.databinding.FragmentCustomerHomeBinding
+import com.uc.alp_vp_acleaning.adapter.OrderAdapter
+import com.uc.alp_vp_acleaning.adapter.OrderTechAdapter
+import com.uc.alp_vp_acleaning.adapter.TechnicianAdapter
 import com.uc.alp_vp_acleaning.databinding.FragmentTechnicianHomeBinding
+import com.uc.alp_vp_acleaning.model.Technician
+import com.uc.alp_vp_acleaning.model.Order
+import com.uc.alp_vp_acleaning.view.MainActivity.Companion.loginTechId
+import com.uc.alp_vp_acleaning.viewmodel.OrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class TechnicianHomeFragment : Fragment() {
 
     private lateinit var binding : FragmentTechnicianHomeBinding
+    private lateinit var viewModelTechOrder: OrderViewModel
+    private lateinit var adapterTechOrder: OrderTechAdapter
+    private lateinit var adapterTechnician: TechnicianAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentTechnicianHomeBinding.inflate(inflater, container, false)
+        binding = FragmentTechnicianHomeBinding.inflate(layoutInflater)
+        val status = "pending"
+        viewModelTechOrder = ViewModelProvider(this@TechnicianHomeFragment).get(OrderViewModel::class.java)
+
+        viewModelTechOrder.getOrderTechStatusData(loginTechId, status)
+
+        viewModelTechOrder.order.observe(viewLifecycleOwner, Observer { response ->
+            Log.e("Technician Order", response.toString())
+            binding.listOrder.layoutManager = LinearLayoutManager(context)
+            adapterTechOrder = OrderTechAdapter(response)
+            binding.listOrder.adapter = adapterTechOrder
+        })
 
         // Inflate the layout for this fragment
         return binding.root
