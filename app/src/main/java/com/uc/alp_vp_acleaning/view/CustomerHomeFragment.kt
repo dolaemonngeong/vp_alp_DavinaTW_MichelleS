@@ -70,7 +70,7 @@ class CustomerHomeFragment : Fragment() {
         viewModelTech.getTechnicianData()
 
         viewModelTech.technician.observe(viewLifecycleOwner, Observer{ response->
-            Log.e("Technician name", response.toString())
+//            Log.e("Technician name", response.toString())
             binding.rvAllTech.layoutManager = LinearLayoutManager(context)
             val kecamatan = ArrayList<Kecamatan>()
             adapterTechnician = TechnicianAdapter(response, kecamatan)

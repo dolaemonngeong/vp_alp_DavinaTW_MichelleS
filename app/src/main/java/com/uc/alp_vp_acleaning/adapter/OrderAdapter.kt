@@ -60,10 +60,10 @@ RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
                 viewHolder.name.text = dataSet[position].Technician.t_name
                 viewHolder.time.text = dataSet[position].time
                 viewHolder.date.text = dataSet[position].date
-                viewHolder.status.text = dataSet[position].note
+                viewHolder.status.text = dataSet[position].status
                 viewHolder.card.setOnClickListener {
                     val intent = Intent(it.context, OrderDetailActivity::class.java)
-                    intent.putExtra("c_id", dataSet[position].c_id)
+                    intent.putExtra("o_id", dataSet[position].o_id)
                     it.context.startActivity(intent)
                 }
             }

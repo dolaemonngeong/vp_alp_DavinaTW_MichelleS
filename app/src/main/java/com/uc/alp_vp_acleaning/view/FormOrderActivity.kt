@@ -100,12 +100,12 @@ class FormOrderActivity : AppCompatActivity() {
                 inputTime.error = "Please choose the Time"
                 isCompleted = false
             } else {
-                val timeNow = System.currentTimeMillis()
-                val timeF = SimpleDateFormat("HH:mm::ss")
-                timeF.format(timeNow)
-                order = OrderItemCreate("", name, address, phone, time, date, note, intent.getIntExtra("t_id", 0), loginCustId, "pending",)
+//                val timeNow = System.currentTimeMillis()
+//                val timeF = SimpleDateFormat("HH:mm::ss")
+//                timeF.format(timeNow)
+//                order = OrderItemCreate("", name, address, phone, time, date, note, intent.getIntExtra("t_id", 0), loginCustId, "pending",)
                 inputTime.error = ""
-                Log.e("o","tes")
+                Log.e("o time:",order.time)
             }
 
             if(order.date!!.equals("Date")){
@@ -123,8 +123,9 @@ class FormOrderActivity : AppCompatActivity() {
                     inputDate.error = "Masukkan Tanggal yang benar"
                     isCompleted = false
                 } else {
-                    order = OrderItemCreate("", name, address, phone, time, date, note, intent.getIntExtra("t_id", 0), loginCustId, "pending",)
+//                    order = OrderItemCreate("", name, address, phone, time, date, note, intent.getIntExtra("t_id", 0), loginCustId, "pending",)
                     inputDate.error =""
+                    Log.e("o date:", order.date)
                 }
             }
 

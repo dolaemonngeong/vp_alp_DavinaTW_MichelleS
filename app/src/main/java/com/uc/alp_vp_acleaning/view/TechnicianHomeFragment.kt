@@ -37,20 +37,41 @@ class TechnicianHomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentTechnicianHomeBinding.inflate(layoutInflater)
-        val status = "pending"
+        var status = ""
+        binding.pendingRb.setOnClickListener {
+            status="pending"
+            Toast.makeText(context, "ini pending", Toast.LENGTH_SHORT).show()
+            filter(status)
+        }
+        binding.ongoingRb.setOnClickListener {
+            status = "on-going"
+            Toast.makeText(context, "ini ongoing", Toast.LENGTH_SHORT).show()
+            filter(status)
+        }
+        binding.completedRb.setOnClickListener {
+            status = "completed"
+            Toast.makeText(context, "ini completed", Toast.LENGTH_SHORT).show()
+            filter(status)
+        }
+
+        return binding.root
+    }
+
+    fun filter(status: String){
         viewModelTechOrder = ViewModelProvider(this@TechnicianHomeFragment).get(OrderViewModel::class.java)
 
-        viewModelTechOrder.getOrderTechStatusData(loginTechId, status)
+        viewModelTechOrder.getOrderCustomerStatusData(loginTechId, status)
 
         viewModelTechOrder.order.observe(viewLifecycleOwner, Observer { response ->
-            Log.e("Technician Order", response.toString())
-            binding.listOrder.layoutManager = LinearLayoutManager(context)
-            adapterTechOrder = OrderTechAdapter(response)
-            binding.listOrder.adapter = adapterTechOrder
+//            Log.e("Customer Order", response)
+            if(response.isEmpty()){
+                Toast.makeText(context, "order masih kosong", Toast.LENGTH_SHORT).show()
+            }else{
+                binding.listOrder.layoutManager = LinearLayoutManager(context)
+                adapterTechOrder = OrderTechAdapter(response)
+                binding.listOrder.adapter = adapterTechOrder
+            }
         })
-
-        // Inflate the layout for this fragment
-        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

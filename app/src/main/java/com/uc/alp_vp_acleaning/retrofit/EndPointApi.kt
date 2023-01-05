@@ -95,26 +95,11 @@ interface EndPointApi {
 
     @PATCH("/customer/{c_id}")
     suspend fun updateCustomer(
-//        val c_id: Int,
-//        val email: String,
-//        val name: String,
-//        val password: String,
-//        val phone: String,
-//        val status: String,
-//        val username: String
         @Body customer: Customer
     ): Response<Customer>
 
     @PUT("/customer/{c_id")
     suspend fun deleteCustomer(
-//        val c_id: Int,
-//        val email: String,
-//        val name: String,
-//        val password: String,
-//        val phone: String,
-//        val status: String,
-//        val username: String
-//        @Body customer: Customer
         @Path("c_id") c_id: Int
     ): Response<Customer>
 
@@ -135,18 +120,19 @@ interface EndPointApi {
 //    suspend fun
 //    ):Response<>
 
+    @FormUrlEncoded
     @POST("/order")
     suspend fun createOrder(
-        @Query("o_id") o_id: String,
-        @Query("name") name: String,
-        @Query("address") address: String,
-        @Query("phone") phone: String,
-        @Query("time") time: String,
-        @Query("date") date: String,
-        @Query("note") note: String,
-        @Query("t_id") t_id: Int,
-        @Query("c_id") c_id: Int,
-        @Query("status") status: String,
+        @Field("o_id") o_id: String,
+        @Field("name") name: String,
+        @Field("address") address: String,
+        @Field("phone") phone: String,
+        @Field("time") time: String,
+        @Field("date") date: String,
+        @Field("note") note: String,
+        @Field("t_id") t_id: Int,
+        @Field("c_id") c_id: Int,
+        @Field("status") status: String,
     ): Response<OrderData>
 
     //update status order dr pending -> on-going -> completed
@@ -155,9 +141,9 @@ interface EndPointApi {
 
     ): Response<Order>
 
-    @GET("/order-all")
-    suspend fun getOrderData(
-    ): Response<OrderDataRead>
+//    @GET("/order-all")
+//    suspend fun getOrderData(
+//    ): Response<OrderDataRead>
 
     @GET("/order-by-id/{o_id}")
     suspend fun getOrderById(

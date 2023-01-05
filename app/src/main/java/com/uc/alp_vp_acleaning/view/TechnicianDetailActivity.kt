@@ -47,6 +47,7 @@ class TechnicianDetailActivity : AppCompatActivity() {
                 }
                 bind.orderBtn.setOnClickListener {
                     val keOrder = Intent(it.context, FormOrderActivity::class.java)
+                    keOrder.putExtra("t_id", t_id)
                     it.context.startActivity(keOrder)
                 }
 //            }

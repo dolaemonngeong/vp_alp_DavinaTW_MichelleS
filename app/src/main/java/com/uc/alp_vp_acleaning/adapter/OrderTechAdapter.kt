@@ -33,7 +33,7 @@ class OrderTechAdapter(private val dataSet: ArrayList<OrderItem>) :
         init {
             // Define click listener for the ViewHolder's View.
             name = view.findViewById(R.id.tech_order)
-            address = view.findViewById(R.id.cust_address)
+            address = view.findViewById(R.id.cust_address_display)
             time = view.findViewById(R.id.order_time)
             date = view.findViewById(R.id.order_date)
             card = view.findViewById(R.id.t_order)
@@ -63,7 +63,7 @@ class OrderTechAdapter(private val dataSet: ArrayList<OrderItem>) :
         viewHolder.date.text = dataSet[position].date
         viewHolder.card.setOnClickListener {
             val intent = Intent(it.context, OrderDetailActivity::class.java)
-            intent.putExtra("o_id", dataSet[position].the0_id)
+            intent.putExtra("o_id", dataSet[position].o_id)
             it.context.startActivity(intent)
         }
     }

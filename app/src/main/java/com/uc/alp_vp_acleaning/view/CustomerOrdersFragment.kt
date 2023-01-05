@@ -30,7 +30,6 @@ class CustomerOrdersFragment : Fragment() {
     private lateinit var binding: FragmentCustomerOrdersBinding
     private lateinit var viewModelOrder: OrderViewModel
     private lateinit var adapterOrder: OrderAdapter
-    private lateinit var adapterTechnician: TechnicianAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,30 +37,41 @@ class CustomerOrdersFragment : Fragment() {
     ): View? {
 //        loginCustId
         binding = FragmentCustomerOrdersBinding.inflate(layoutInflater)
-        val status = "pending"
+        var status = ""
+        binding.pendingRb.setOnClickListener {
+            status="pending"
+            Toast.makeText(context, "ini pending", Toast.LENGTH_SHORT).show()
+            filter(status)
+        }
+        binding.ongoingRb.setOnClickListener {
+            status = "on-going"
+            Toast.makeText(context, "ini ongoing", Toast.LENGTH_SHORT).show()
+            filter(status)
+        }
+        binding.completedRb.setOnClickListener {
+            status = "completed"
+            Toast.makeText(context, "ini completed", Toast.LENGTH_SHORT).show()
+            filter(status)
+        }
+
+        return binding.root
+    }
+    
+    fun filter(status: String){
         viewModelOrder = ViewModelProvider(this@CustomerOrdersFragment).get(OrderViewModel::class.java)
 
         viewModelOrder.getOrderCustomerStatusData(loginCustId, status)
 
         viewModelOrder.order.observe(viewLifecycleOwner, Observer { response ->
-            Log.e("Customer Order", response.toString())
-            binding.rvOrders.layoutManager = LinearLayoutManager(context)
-//            val technician = ArrayList<Technician>()
-            adapterOrder = OrderAdapter(response)
-            binding.rvOrders.adapter = adapterOrder
-        })
-        
-//        viewModelOrder = ViewModelProvider(this).get(TechnicianViewModel::class.java)
-//        viewModelOrder.get()
-//
-//        viewModelOrder.technician.observe(viewLifecycleOwner, Observer{ response->
-//            Log.e("Technician name", response.toString())
-//            binding.rvAllTech.layoutManager = LinearLayoutManager(context)
-//            val kecamatan = ArrayList<Kecamatan>()
-//            adapterTechnician = TechnicianAdapter(response, kecamatan)
-//            binding.rvAllTech.adapter = adapterTechnician
-//        })
-        return binding.root
+//            Log.e("Customer Order", response)
+            if(response.isEmpty()){
+                Toast.makeText(context, "order masih kosong", Toast.LENGTH_SHORT).show()
+            }else{
+                binding.rvOrders.layoutManager = LinearLayoutManager(context)
+                adapterOrder = OrderAdapter(response)
+                binding.rvOrders.adapter = adapterOrder
+            }
+        })   
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
