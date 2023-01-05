@@ -9,4 +9,13 @@
     <string name="close">Close</string>
     <!--    <string name="apply_filter">Apply Filter</string>-->
 
+    <string name="selected_item">Selected item:</string>
+    <string-array name="Kecamatan">
+        <item>Java</item>
+        <item>Kotlin</item>
+        <item>Swift</item>
+        <item>Python</item>
+        <item>Scala</item>
+        <item>Perl</item>
+    </string-array>
 </resources>

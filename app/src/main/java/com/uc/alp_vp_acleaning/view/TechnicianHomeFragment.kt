@@ -90,7 +90,7 @@ class TechnicianHomeFragment : Fragment() {
 
 //                val snackBar = Snackbar.make(viewBind.root, "Hewan telah dihapus", Snackbar.LENGTH_SHORT)
             }
-            .setNegativeButton("Tidak") { dialog, id ->
+            .setNegativeButton("Ok") { dialog, id ->
 
                 dialog.dismiss()
             }.create().show()

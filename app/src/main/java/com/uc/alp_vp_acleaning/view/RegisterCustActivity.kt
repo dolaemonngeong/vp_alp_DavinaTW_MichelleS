@@ -32,28 +32,6 @@ class RegisterCustActivity : AppCompatActivity() {
 
         viewBind.apply {
             buttonRegistercust.setOnClickListener {
-//                viewModelCust = ViewModelProvider(this).get(CustomerViewModel::class.java)
-//                var fullname = regNamecust.text.toString().trim()
-//                var customername = regUnamecust.text.toString().trim()
-//                var email = regEmailcust.text.toString().trim()
-//                var phone_no = regPhonecust.text.toString().trim()
-//                var password = regPasscust.text.toString().trim()
-//
-//                val customer = CustomerItem(
-//                    "",
-//                    email,
-//                    fullname,
-//                    password,
-//                    phone_no,
-//                    "active",
-//                    customername
-//                )
-//                viewModelCust.createCustomerVM(customer)
-//
-//                val intent = Intent(it.context, MainActivity::class.java)
-//                intent.putExtra("role", 0)
-//                it.context.startActivity(intent)
-
                 cek()
             }
         }
@@ -117,13 +95,6 @@ class RegisterCustActivity : AppCompatActivity() {
                     regEmailcust.error = ""
                 }
             }
-
-//            if (!customerconfirm.confirmpassword.equals(customer.password)) {
-//                confirmpassword_edit.error = "Please fill in the same as your password"
-//                isCompleted = false
-//            } else {
-//                confirmpassword_edit.error = ""
-//            }
 
 //         Password
             if (customer.password!!.isEmpty()) {

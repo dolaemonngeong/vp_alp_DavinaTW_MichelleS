@@ -15,6 +15,26 @@ import javax.inject.Inject
 class TechnicianViewModel @Inject constructor(private val repository: TechnicianRepository) :
     ViewModel() {
 
+    //Get Customer buat create
+    val _user: MutableLiveData<CustomerData> by lazy {
+        MutableLiveData<CustomerData>()
+    }
+    val user: LiveData<CustomerData> get() = _user
+
+    //create customer
+//    fun createTechnicianVM(t: TechnicianItem1) = viewModelScope.launch {
+//        repository.createTechnicianResult(t).let { response ->
+//            if (response.isSuccessful) {
+//                _user.postValue(
+//                    response.body() as
+//                            CustomerData
+//                )
+//            } else {
+//                Log.e("Create Data", "Failed!")
+//            }
+//        }
+//    }
+
     //get Technician
     val _technician: MutableLiveData<ArrayList<TechnicianItem>> by lazy {
         MutableLiveData<ArrayList<TechnicianItem>>()

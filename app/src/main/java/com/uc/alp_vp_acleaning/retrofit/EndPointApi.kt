@@ -42,10 +42,19 @@ interface EndPointApi {
         @Path("t_id") t_id: Int
     ): Response<TechnicianData>
 
+    @FormUrlEncoded
     @POST("/technician")
     suspend fun createTechnician(
-        @Body technician: Technician
-    ): Response<Technician>
+        @Field("email") email: String,
+        @Field("kecamatan_id") k_id: Int,
+        @Field("password") password: String,
+        @Field("phone") phone: String,
+        @Field("rate") rate: String,
+        @Field("status") status: String,
+        @Field("t_id") t_id: String,
+        @Field("t_name") t_name: String,
+        @Field("username") username: String,
+    ): Response<CustomerData>
 
     @PATCH("/technician/{t_id}")
     suspend fun updateTechnician(

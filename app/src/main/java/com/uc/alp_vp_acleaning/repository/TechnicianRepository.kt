@@ -1,10 +1,14 @@
 package com.uc.alp_vp_acleaning.repository
 
+import com.uc.alp_vp_acleaning.model.CustomerItem
+import com.uc.alp_vp_acleaning.model.TechnicianItem
 import com.uc.alp_vp_acleaning.model.TechnicianRateField
 import com.uc.alp_vp_acleaning.retrofit.EndPointApi
 import javax.inject.Inject
 
 class TechnicianRepository @Inject constructor(private val api: EndPointApi) {
+//    suspend fun createTechnicianResult(t: TechnicianItem1) = api.createTechnician(t.email, t.kecamatan_id, t.password, t.phone, t.rate, t.status, "", t.t_name,t.username)
+
     suspend fun getTechnicianResult() = api.getTechnician()
 
     suspend fun getTechnicianDetailsData(t_id: Int) = api.getTechnicianById(t_id)
