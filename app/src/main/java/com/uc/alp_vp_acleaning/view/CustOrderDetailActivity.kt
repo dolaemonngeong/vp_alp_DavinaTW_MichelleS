@@ -95,18 +95,36 @@ class CustOrderDetailActivity : AppCompatActivity() {
                             ratenya = "1"
                             rate2.isChecked = false
                             rate3.isChecked = false
+                            rate4.isChecked = false
+                            rate5.isChecked = false
                         }
                         rate2.setOnClickListener {
                             ratenya = "2"
+                            rate1.isChecked = false
+                            rate3.isChecked = false
+                            rate4.isChecked = false
+                            rate5.isChecked = false
                         }
                         rate3.setOnClickListener {
                             ratenya = "3"
+                            rate1.isChecked = false
+                            rate2.isChecked = false
+                            rate4.isChecked = false
+                            rate5.isChecked = false
                         }
                         rate4.setOnClickListener {
                             ratenya = "4"
+                            rate1.isChecked = false
+                            rate2.isChecked = false
+                            rate3.isChecked = false
+                            rate5.isChecked = false
                         }
                         rate5.setOnClickListener {
                             ratenya = "5"
+                            rate1.isChecked = false
+                            rate2.isChecked = false
+                            rate3.isChecked = false
+                            rate4.isChecked = false
                         }
 //                        Toast.makeText(this@CustOrderDetailActivity, "otw with", Toast.LENGTH_SHORT).show()
 
