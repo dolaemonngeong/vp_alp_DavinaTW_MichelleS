@@ -14,6 +14,7 @@ import com.uc.alp_vp_acleaning.model.Kecamatan
 import com.uc.alp_vp_acleaning.model.Order
 import com.uc.alp_vp_acleaning.model.OrderItem
 import com.uc.alp_vp_acleaning.model.Technician
+import com.uc.alp_vp_acleaning.view.CustOrderDetailActivity
 import com.uc.alp_vp_acleaning.view.OrderDetailActivity
 import com.uc.alp_vp_acleaning.view.TechnicianDetailActivity
 
@@ -69,7 +70,7 @@ RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
                     viewHolder.btnCon.isVisible = false
                 }
                 viewHolder.card.setOnClickListener {
-                    val intent = Intent(it.context, OrderDetailActivity::class.java)
+                    val intent = Intent(it.context, CustOrderDetailActivity::class.java)
                     intent.putExtra("o_id", dataSet[position].o_id)
                     it.context.startActivity(intent)
                 }

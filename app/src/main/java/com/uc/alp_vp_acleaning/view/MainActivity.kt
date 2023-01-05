@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var viewBind: ActivityMainBinding
     lateinit var toggle: ActionBarDrawerToggle
 
-    companion object{
+    companion object {
         var loginCustId = 0
         var loginTechId = 0
     }
@@ -123,8 +123,9 @@ class MainActivity : AppCompatActivity() {
                         R.id.nav_logout -> {
                             Toast.makeText(applicationContext, "ini log out", Toast.LENGTH_SHORT)
                                 .show()
-//                        val loginIntent = Intent(this, LoginAsActivity::class.java)
-//                        startActivity(loginIntent)
+                            val loginIntent = Intent(this@MainActivity, LoginAsActivity::class.java)
+                            startActivity(loginIntent)
+                            finish()
                         }
                     }
                     true

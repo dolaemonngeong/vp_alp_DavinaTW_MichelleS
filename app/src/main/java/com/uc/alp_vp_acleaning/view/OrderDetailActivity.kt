@@ -46,6 +46,16 @@ class OrderDetailActivity : AppCompatActivity() {
                     custNote.text = ""
                 }
 
+                if(detailStatus.text == "Pending"){
+                    imageView7.setImageResource(R.drawable.historical)
+                }
+                if(detailStatus.text == "On-going"){
+                    imageView7.setImageResource(R.drawable.reboot)
+                }
+                if(detailStatus.text == "Completed"){
+                    imageView7.setImageResource(R.drawable.checkmark)
+                }
+
                 if(detailStatus.text != "Pending"){
                     btnAcc.isVisible = false
                 }

@@ -28,9 +28,9 @@ interface EndPointApi {
 //    ): Response<JsonObject>
 
     @GET("/technician/{name}")
-    suspend fun getTechnician(
+    suspend fun getTechnicianName(
         @Path("name") name: String
-    ): Response<JsonObject>
+    ): Response<TechnicianData>
 
     @GET("/technician-location/{k_id}")
     suspend fun getTechnicianLocation(
@@ -52,11 +52,12 @@ interface EndPointApi {
         @Body technician: Technician
     ): Response<Technician>
 
-    @PATCH("/technician/{t_id}/{rete}")
+    @FormUrlEncoded
+    @PATCH("/technician-rate")
     suspend fun updateRate(
-        @Path("t_id") t_id: Int,
-        @Path("rate") rate: Int
-    ): Response<Technician>
+        @Field("t_id") t_id: Int,
+        @Field("rate") rate: String
+    ): Response<TechnicianDataUpdate>
 
     @FormUrlEncoded
     @POST("/login-customer")

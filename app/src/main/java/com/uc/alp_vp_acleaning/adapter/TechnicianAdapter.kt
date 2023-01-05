@@ -12,7 +12,7 @@ import com.uc.alp_vp_acleaning.model.*
 import com.uc.alp_vp_acleaning.view.TechnicianDetailActivity
 
 
-class TechnicianAdapter(private val dataSet: ArrayList<TechnicianItem>, private val dataKecamatan: ArrayList<Kecamatan>) :
+class TechnicianAdapter(private val dataSet: ArrayList<TechnicianItem>) :
         RecyclerView.Adapter<TechnicianAdapter.ViewHolder>() {
 
     /**

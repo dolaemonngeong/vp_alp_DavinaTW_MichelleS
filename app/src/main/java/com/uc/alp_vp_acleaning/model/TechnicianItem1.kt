@@ -6,7 +6,7 @@ data class TechnicianItem1(
     val kecamatan_id: Int,
     val password: String,
     val phone: String,
-    val rate: Int,
+    val rate: String,
     val status: String,
     val t_id: Int,
     val t_name: String,

@@ -1,5 +1,6 @@
 package com.uc.alp_vp_acleaning.repository
 
+import com.uc.alp_vp_acleaning.model.TechnicianRateField
 import com.uc.alp_vp_acleaning.retrofit.EndPointApi
 import javax.inject.Inject
 
@@ -9,6 +10,10 @@ class TechnicianRepository @Inject constructor(private val api: EndPointApi) {
     suspend fun getTechnicianDetailsData(t_id: Int) = api.getTechnicianById(t_id)
 
     suspend fun getTechnicianLocation(k_id: Int) = api.getTechnicianLocation(k_id)
+
+    suspend fun searchTechData(t_name:String) = api.getTechnicianName(t_name)
+
+    suspend fun updateRateData(t: TechnicianRateField) = api.updateRate(t.t_id, t.rate)
 
     fun loginTech(username: String, password: String) = api.loginTechnician(username, password)
 

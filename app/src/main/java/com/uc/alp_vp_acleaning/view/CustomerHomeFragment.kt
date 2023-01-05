@@ -43,7 +43,6 @@ class CustomerHomeFragment : Fragment(), FilterListener {
 
 //    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("c_id")
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -76,15 +75,32 @@ class CustomerHomeFragment : Fragment(), FilterListener {
 //            Log.e("Technician name", response.toString())
             binding.rvAllTech.layoutManager = LinearLayoutManager(context)
             val kecamatan = ArrayList<Kecamatan>()
-            adapterTechnician = TechnicianAdapter(response, kecamatan)
+            adapterTechnician = TechnicianAdapter(response)
             binding.rvAllTech.adapter = adapterTechnician
         })
 
-//        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//
-//            }
-//        })
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String): Boolean {
+             binding.searchView.clearFocus()
+                viewModelTech.getTechName(query)
+                viewModelTech.technician.observe(viewLifecycleOwner, Observer{ response->
+                    binding.rvAllTech.layoutManager = LinearLayoutManager(context)
+                    adapterTechnician = TechnicianAdapter(response)
+                    binding.rvAllTech.adapter = adapterTechnician
+                })
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                viewModelTech.getTechName(newText)
+                viewModelTech.technician.observe(viewLifecycleOwner, Observer{ response->
+                    binding.rvAllTech.layoutManager = LinearLayoutManager(context)
+                    adapterTechnician = TechnicianAdapter(response)
+                    binding.rvAllTech.adapter = adapterTechnician
+                })
+                return false
+            }
+        })
 
         return binding.root
     }

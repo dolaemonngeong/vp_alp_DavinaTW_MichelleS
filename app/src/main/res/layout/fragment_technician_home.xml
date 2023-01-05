@@ -61,7 +61,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/nmTechWelcome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/source_sans_pro_bold"
@@ -80,8 +80,8 @@
                     android:text="Orders"
                     android:textColor="#000000"
                     android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="@id/textView4"
-                    app:layout_constraintTop_toBottomOf="@id/textView4" />
+                    app:layout_constraintStart_toStartOf="@id/nmTechWelcome"
+                    app:layout_constraintTop_toBottomOf="@id/nmTechWelcome" />
 
                 <RadioGroup
                     android:id="@+id/rgStatus"

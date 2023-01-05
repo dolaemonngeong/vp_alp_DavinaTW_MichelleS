@@ -19,6 +19,7 @@ import com.uc.alp_vp_acleaning.databinding.FragmentCustomerOrdersBinding
 import com.uc.alp_vp_acleaning.model.Kecamatan
 import com.uc.alp_vp_acleaning.model.Order
 import com.uc.alp_vp_acleaning.model.Technician
+import com.uc.alp_vp_acleaning.retrofit.FilterListener
 import com.uc.alp_vp_acleaning.view.MainActivity.Companion.loginCustId
 import com.uc.alp_vp_acleaning.viewmodel.OrderViewModel
 import com.uc.alp_vp_acleaning.viewmodel.TechnicianViewModel
@@ -76,8 +77,5 @@ class CustomerOrdersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        
-
     }
 }
