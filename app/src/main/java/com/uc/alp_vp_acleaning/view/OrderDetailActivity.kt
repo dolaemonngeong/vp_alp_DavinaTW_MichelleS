@@ -2,6 +2,8 @@ package com.uc.alp_vp_acleaning.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.uc.alp_vp_acleaning.R
@@ -22,9 +24,11 @@ class OrderDetailActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
         val o_id = intent.getIntExtra("o_id",0)
+        Toast.makeText(this, "o_id: $o_id", Toast.LENGTH_SHORT).show()
         viewModel = ViewModelProvider(this)[OrderViewModel::class.java]
         viewModel.getOrderDetails(o_id)
         viewModel.orderDetails.observe(this, Observer{ response ->
+//            bind.detailStatus.text = "ni"
             bind.apply {
                 detailStatus.text = response.status
                 orderId.text = response.o_id.toString()
@@ -37,6 +41,10 @@ class OrderDetailActivity : AppCompatActivity() {
                     custNote.text = response.note.String
                 }else{
                     custNote.text = ""
+                }
+
+                if(detailStatus.text != "Pending"){
+                    btnAcc.isVisible = false
                 }
             }
 
