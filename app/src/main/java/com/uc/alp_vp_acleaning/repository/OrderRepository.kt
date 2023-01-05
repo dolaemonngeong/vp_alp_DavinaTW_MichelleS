@@ -1,6 +1,7 @@
 package com.uc.alp_vp_acleaning.repository
 
 import com.uc.alp_vp_acleaning.model.OrderItemCreate
+import com.uc.alp_vp_acleaning.model.OrderItemField
 import com.uc.alp_vp_acleaning.retrofit.EndPointApi
 import javax.inject.Inject
 
@@ -14,8 +15,8 @@ class OrderRepository @Inject constructor(private val api: EndPointApi) {
 
     suspend fun createOrderResult(o:OrderItemCreate) = api.createOrder("",o.name, o.address, o.phone, o.time, o.date, o.note, o.t_id, o.c_id, o.status)
 
-    suspend fun updateOrderResult() = api.updateOrder()
-    
+    suspend fun updateOrderResult(o:OrderItemField) = api.updateOrder(o.o_id, o.status)
+
 //    private fun convertJsonToTechnicians(json: JsonObject): List<Technician> {
 //        val technicians = mutableListOf<Technician>()
 //

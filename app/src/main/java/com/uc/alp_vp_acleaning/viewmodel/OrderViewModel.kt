@@ -96,8 +96,23 @@ class OrderViewModel @Inject constructor(private val repository: OrderRepository
         }
     }
 
-    fun updateOrder() = viewModelScope.launch {
-        repository
+    val _orderupdate: MutableLiveData<OrderDataUpdate> by lazy {
+        MutableLiveData<OrderDataUpdate>()
+    }
+
+    val orderupdate: LiveData<OrderDataUpdate> get() = _orderupdate
+
+
+    fun updateOrder(o:OrderItemField) = viewModelScope.launch {
+        repository.updateOrderResult(o).let { response->
+            if(response.isSuccessful){
+                _orderupdate.postValue(
+                    response.body() as
+                            OrderDataUpdate)
+            }else{
+                Log.e("Update Order","Failed")
+            }
+        }
     }
 
 }

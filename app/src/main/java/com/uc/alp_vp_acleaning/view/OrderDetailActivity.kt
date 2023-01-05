@@ -1,5 +1,6 @@
 package com.uc.alp_vp_acleaning.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -9,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.uc.alp_vp_acleaning.R
 import com.uc.alp_vp_acleaning.databinding.ActivityOrderDetailBinding
 import com.uc.alp_vp_acleaning.databinding.ActivityTechnicianDetailBinding
+import com.uc.alp_vp_acleaning.model.OrderItemField
+import com.uc.alp_vp_acleaning.view.MainActivity.Companion.loginTechId
 import com.uc.alp_vp_acleaning.viewmodel.OrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -47,7 +50,14 @@ class OrderDetailActivity : AppCompatActivity() {
                     btnAcc.isVisible = false
                 }
                 btnAcc.setOnClickListener{
-                    viewModel
+                    var statusNew = "On-going"
+                    var orderItemField = OrderItemField(o_id.toString(),statusNew)
+                    viewModel.updateOrder(orderItemField)
+
+                    val intent = Intent(this@OrderDetailActivity, MainActivity::class.java)
+                    intent.putExtra("role", 1)
+                    intent.putExtra("loginTechId", loginTechId)
+                    startActivity(intent)
                 }
             }
 

@@ -8,6 +8,8 @@ class TechnicianRepository @Inject constructor(private val api: EndPointApi) {
 
     suspend fun getTechnicianDetailsData(t_id: Int) = api.getTechnicianById(t_id)
 
+    suspend fun getTechnicianLocation(k_id: Int) = api.getTechnicianLocation(k_id)
+
     fun loginTech(username: String, password: String) = api.loginTechnician(username, password)
 
 //    private fun convertJsonToTechnicians(json: JsonObject): List<Technician> {

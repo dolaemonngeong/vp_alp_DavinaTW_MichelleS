@@ -6,7 +6,6 @@ import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
-
 interface EndPointApi {
     @FormUrlEncoded
     @POST("/login-technician")
@@ -34,7 +33,7 @@ interface EndPointApi {
     ): Response<JsonObject>
 
     @GET("/technician-location/{k_id}")
-    suspend fun getTechnician(
+    suspend fun getTechnicianLocation(
         @Path("k_id") k_id: Int
     ): Response<TechnicianData>
 

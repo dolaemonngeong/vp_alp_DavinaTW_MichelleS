@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -19,6 +20,7 @@ import com.uc.alp_vp_acleaning.adapter.TechnicianAdapter
 import com.uc.alp_vp_acleaning.databinding.FragmentCustomerHomeBinding
 import com.uc.alp_vp_acleaning.model.Kecamatan
 import com.uc.alp_vp_acleaning.model.KecamatanItem1
+import com.uc.alp_vp_acleaning.retrofit.FilterListener
 import com.uc.alp_vp_acleaning.view.MainActivity.Companion.loginCustId
 import com.uc.alp_vp_acleaning.viewmodel.CustomerViewModel
 import com.uc.alp_vp_acleaning.viewmodel.KecamatanViewModel
@@ -29,7 +31,7 @@ import dagger.hilt.android.AndroidEntryPoint
 //@InstallIn(FragmentComponent::class)
 @AndroidEntryPoint
 
-class CustomerHomeFragment : Fragment() {
+class CustomerHomeFragment : Fragment(), FilterListener {
 
     private lateinit var adapterTechnician: TechnicianAdapter
     private lateinit var adapterKecamatan: KecamatanAdapter
@@ -59,12 +61,13 @@ class CustomerHomeFragment : Fragment() {
             viewModelKecamatan._kecamatan.observe(viewLifecycleOwner, Observer{response->
                 val rvKecamatan = bottomSheetDialog.findViewById<RecyclerView>(R.id.rvKecamatan)
                 rvKecamatan?.layoutManager = LinearLayoutManager(context)
-                adapterKecamatan = KecamatanAdapter(response)
+                adapterKecamatan = KecamatanAdapter(response, this)
                 rvKecamatan?.adapter = adapterKecamatan
             })
 
             bottomSheetDialog.show()
         }
+
 
         viewModelTech = ViewModelProvider(this).get(TechnicianViewModel::class.java)
         viewModelTech.getTechnicianData()
@@ -77,15 +80,23 @@ class CustomerHomeFragment : Fragment() {
             binding.rvAllTech.adapter = adapterTechnician
         })
 
+//        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+//            override fun onQueryTextSubmit(query: String?): Boolean {
+//
+//            }
+//        })
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+    }
 
-
-
-
+    override fun onFilterItemClicked(filter: String, isSelected: Int) {
+        if(filter == "filKecamatan"){
+            viewModelTech.getTechFilterData(isSelected)
+        }
     }
 
 }

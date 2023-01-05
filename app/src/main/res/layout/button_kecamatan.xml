@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.AppCompatCheckedTextView
+    <Button
         android:id="@+id/kec_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

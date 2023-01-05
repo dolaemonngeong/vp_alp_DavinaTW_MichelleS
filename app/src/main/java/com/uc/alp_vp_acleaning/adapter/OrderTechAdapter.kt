@@ -28,6 +28,7 @@ class OrderTechAdapter(private val dataSet: ArrayList<OrderItem>) :
         val address: TextView
         val time: TextView
         val date: TextView
+        val id: TextView
         val card: CardView
 
         init {
@@ -36,6 +37,7 @@ class OrderTechAdapter(private val dataSet: ArrayList<OrderItem>) :
             address = view.findViewById(R.id.cust_address_display)
             time = view.findViewById(R.id.order_time)
             date = view.findViewById(R.id.order_date)
+            id = view.findViewById(R.id.order_id)
             card = view.findViewById(R.id.t_order)
         }
     }
@@ -62,6 +64,7 @@ class OrderTechAdapter(private val dataSet: ArrayList<OrderItem>) :
         viewHolder.address.text = dataSet[position].address
         viewHolder.time.text = dataSet[position].time
         viewHolder.date.text = dataSet[position].date
+        viewHolder.id.text = dataSet[position].o_id.toString()
         viewHolder.card.setOnClickListener {
             val intent = Intent(it.context, OrderDetailActivity::class.java)
             intent.putExtra("o_id", dataSet[position].o_id)

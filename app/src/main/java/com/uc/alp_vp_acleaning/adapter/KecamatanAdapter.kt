@@ -4,19 +4,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.uc.alp_vp_acleaning.R
 import com.uc.alp_vp_acleaning.model.KecamatanItem1
+import com.uc.alp_vp_acleaning.retrofit.FilterListener
 
 
-class KecamatanAdapter(private val dataSet: ArrayList<KecamatanItem1>) :
+class KecamatanAdapter(private val dataSet: ArrayList<KecamatanItem1>, val filterListener: FilterListener) :
         RecyclerView.Adapter<KecamatanAdapter.ViewHolder>() {
 
     /**
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
      */
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View, val filterListener1: FilterListener) : RecyclerView.ViewHolder(view) {
         val kecButton: Button
 
         init {
@@ -29,10 +31,11 @@ class KecamatanAdapter(private val dataSet: ArrayList<KecamatanItem1>) :
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         // Create a new view, which defines the UI of the list item
+//        val layoutInflater = LayoutInflater.from(viewGroup.context)
         val view = LayoutInflater.from(viewGroup.context)
                 .inflate(R.layout.button_kecamatan, viewGroup, false)
 
-        return ViewHolder(view)
+        return ViewHolder(view, filterListener)
     }
 
 //    override fun getItemCount(): Int = selectedItems.size
@@ -47,6 +50,11 @@ class KecamatanAdapter(private val dataSet: ArrayList<KecamatanItem1>) :
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         viewHolder.kecButton.text = dataSet[position].kecamatan_name
+//        dataSet[position].
+        viewHolder.kecButton.setOnClickListener {
+//            Toast.makeText(this, "id kec $dataSet[position].k_id", Toast.LENGTH_SHORT).show()
+            filterListener.onFilterItemClicked("filKecamatan", dataSet[position].k_id)
+        }
 //        viewHolder.kecButton.setOnClickListener {
 //            // Get the selected kecamatan ID.
 //            val kecId = dataSet[position].k_id
