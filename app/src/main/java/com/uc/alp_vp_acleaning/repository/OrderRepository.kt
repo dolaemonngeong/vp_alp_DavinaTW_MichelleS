@@ -13,6 +13,9 @@ class OrderRepository @Inject constructor(private val api: EndPointApi) {
     suspend fun getOrderDetailsData(o_id: Int) = api.getOrderById(o_id)
 
     suspend fun createOrderResult(o:OrderItemCreate) = api.createOrder("",o.name, o.address, o.phone, o.time, o.date, o.note, o.t_id, o.c_id, o.status)
+
+    suspend fun updateOrderResult() = api.updateOrder()
+    
 //    private fun convertJsonToTechnicians(json: JsonObject): List<Technician> {
 //        val technicians = mutableListOf<Technician>()
 //

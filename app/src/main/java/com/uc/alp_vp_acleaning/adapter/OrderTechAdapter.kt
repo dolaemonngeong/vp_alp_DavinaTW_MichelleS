@@ -57,6 +57,7 @@ class OrderTechAdapter(private val dataSet: ArrayList<OrderItem>) :
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
+
         viewHolder.name.text = dataSet[position].name
         viewHolder.address.text = dataSet[position].address
         viewHolder.time.text = dataSet[position].time

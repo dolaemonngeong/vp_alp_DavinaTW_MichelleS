@@ -64,7 +64,7 @@ class OrderViewModel @Inject constructor(private val repository: OrderRepository
                 if (response.isSuccessful) {
                     Log.d("order cust status vm resp", "msk resp")
 
-                        _order.postValue(response.body()?.data as ArrayList<OrderItem>?)
+                    _order.postValue(response.body()?.data as ArrayList<OrderItem>?)
 
                 } else {
                     Log.e("Get Data", "Failed!")
@@ -78,23 +78,27 @@ class OrderViewModel @Inject constructor(private val repository: OrderRepository
     }
 
 
-//Get Order Details Data
-val _orderDetails: MutableLiveData<OrderItem> by lazy {
-    MutableLiveData<OrderItem>()
-}
+    //Get Order Details Data
+    val _orderDetails: MutableLiveData<OrderItem> by lazy {
+        MutableLiveData<OrderItem>()
+    }
 
-val orderDetails: LiveData<OrderItem>
-    get() = _orderDetails
+    val orderDetails: LiveData<OrderItem>
+        get() = _orderDetails
 
-fun getOrderDetails(o_id: Int) = viewModelScope.launch {
-    repository.getOrderDetailsData(o_id).let { response ->
-        if (response.isSuccessful) {
-            _orderDetails.postValue(response.body())
-        } else {
-            Log.e("Get Order Details Data", "Failed!")
+    fun getOrderDetails(o_id: Int) = viewModelScope.launch {
+        repository.getOrderDetailsData(o_id).let { response ->
+            if (response.isSuccessful) {
+                _orderDetails.postValue(response.body())
+            } else {
+                Log.e("Get Order Details Data", "Failed!")
+            }
         }
     }
-}
+
+    fun updateOrder() = viewModelScope.launch {
+        repository
+    }
 
 }
 

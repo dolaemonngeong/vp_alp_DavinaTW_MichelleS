@@ -136,10 +136,12 @@ interface EndPointApi {
     ): Response<OrderData>
 
     //update status order dr pending -> on-going -> completed
+    @FormUrlEncoded
     @PATCH("/order")
     suspend fun updateOrder(
-
-    ): Response<Order>
+        @Field("o_id") o_id: String,
+        @Field("status") status: String,
+    ): Response<OrderDataUpdate>
 
 //    @GET("/order-all")
 //    suspend fun getOrderData(

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.uc.alp_vp_acleaning.R
 import com.uc.alp_vp_acleaning.model.Kecamatan
@@ -29,6 +30,7 @@ RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
         val time: TextView
         val date: TextView
         val card: CardView
+        val btnCon : Button
 
         init {
             // Define click listener for the ViewHolder's View.
@@ -37,6 +39,7 @@ RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
             time = view.findViewById(R.id.order_time)
             date = view.findViewById(R.id.order_date)
             card = view.findViewById(R.id.order_cust)
+            btnCon = view.findViewById(R.id.btn_confirm)
         }
     }
             override fun onCreateViewHolder(
@@ -61,10 +64,18 @@ RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
                 viewHolder.time.text = dataSet[position].time
                 viewHolder.date.text = dataSet[position].date
                 viewHolder.status.text = dataSet[position].status
+
+                if(viewHolder.status.text != "On-going"){
+                    viewHolder.btnCon.isVisible = false
+                }
                 viewHolder.card.setOnClickListener {
                     val intent = Intent(it.context, OrderDetailActivity::class.java)
                     intent.putExtra("o_id", dataSet[position].o_id)
                     it.context.startActivity(intent)
+                }
+
+                viewHolder.btnCon.setOnClickListener {
+
                 }
             }
 

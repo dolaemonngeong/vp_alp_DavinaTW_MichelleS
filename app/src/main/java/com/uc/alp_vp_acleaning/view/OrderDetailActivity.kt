@@ -28,7 +28,6 @@ class OrderDetailActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[OrderViewModel::class.java]
         viewModel.getOrderDetails(o_id)
         viewModel.orderDetails.observe(this, Observer{ response ->
-//            bind.detailStatus.text = "ni"
             bind.apply {
                 detailStatus.text = response.status
                 orderId.text = response.o_id.toString()
@@ -37,6 +36,7 @@ class OrderDetailActivity : AppCompatActivity() {
                 custAddress.text = response.address
                 custDate.text = response.date
                 custTime.text = response.time
+
                 if(response.note.Valid == true){
                     custNote.text = response.note.String
                 }else{
@@ -45,6 +45,9 @@ class OrderDetailActivity : AppCompatActivity() {
 
                 if(detailStatus.text != "Pending"){
                     btnAcc.isVisible = false
+                }
+                btnAcc.setOnClickListener{
+                    viewModel
                 }
             }
 
