@@ -104,11 +104,11 @@ class LoginActivity : AppCompatActivity() {
                         if (response.isSuccessful) {
                             val myIntent = Intent(this@LoginActivity, MainActivity::class.java)
 
-                            Toast.makeText(
-                                this@LoginActivity,
-                                response.body()?.c_id,
-                                Toast.LENGTH_SHORT
-                            ).show()
+//                            Toast.makeText(
+//                                this@LoginActivity,
+//                                response.body()?.c_id,
+//                                Toast.LENGTH_SHORT
+//                            ).show()
 
                             myIntent.putExtra("loginCustId", response.body()?.c_id?.toInt())
                             myIntent.putExtra("role", 0)
@@ -171,11 +171,11 @@ class LoginActivity : AppCompatActivity() {
                         if (response.isSuccessful) {
                             val myIntent = Intent(this@LoginActivity, MainActivity::class.java)
 
-                            Toast.makeText(
-                                this@LoginActivity,
-                                response.body()?.t_id,
-                                Toast.LENGTH_SHORT
-                            ).show()
+//                            Toast.makeText(
+//                                this@LoginActivity,
+//                                response.body()?.t_id,
+//                                Toast.LENGTH_SHORT
+//                            ).show()
 
                             myIntent.putExtra("loginTechId", response.body()?.t_id?.toInt())
                             myIntent.putExtra("role", 1)
@@ -190,7 +190,7 @@ class LoginActivity : AppCompatActivity() {
                         } else {
                             Toast.makeText(
                                 this@LoginActivity,
-                                "Login Gagal",
+                                "Username/password salah",
                                 Toast.LENGTH_SHORT
                             )
                                 .show()

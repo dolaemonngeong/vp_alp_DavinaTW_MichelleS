@@ -24,7 +24,7 @@ class CustomerProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         //loginCustId
-        Toast.makeText(context, "Login ID: $loginCustId", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(context, "Login ID: $loginCustId", Toast.LENGTH_SHORT).show()
         binding = FragmentCustomerProfileBinding.inflate(layoutInflater)
             viewModel = ViewModelProvider(this@CustomerProfileFragment).get(CustomerViewModel::class.java)
             viewModel.getCustomerById(loginCustId)

@@ -38,7 +38,7 @@ class CustOrderDetailActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
         val o_id = intent.getIntExtra("o_id",0)
-        Toast.makeText(this, "o_id: $o_id", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "o_id: $o_id", Toast.LENGTH_SHORT).show()
         viewModel = ViewModelProvider(this)[OrderViewModel::class.java]
         viewModel.getOrderDetails(o_id)
         viewModel.orderDetails.observe(this, Observer{ response ->

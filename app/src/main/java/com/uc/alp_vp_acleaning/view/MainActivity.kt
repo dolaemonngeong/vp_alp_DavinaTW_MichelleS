@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
             loginTechId = intent.getIntExtra("loginTechId", 0)
 
             loginCustId = intent.getIntExtra("loginCustId", 0)
-            Toast.makeText(this@MainActivity, "cust id: $loginCustId", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this@MainActivity, "cust id: $loginCustId", Toast.LENGTH_SHORT).show()
             if (tech == 1) {
                 changeFragment(TechnicianHomeFragment())
                 navView.menu.findItem(R.id.nav_order).setVisible(false)
@@ -74,22 +74,22 @@ class MainActivity : AppCompatActivity() {
                     when (it.itemId) {
                         R.id.nav_home -> {
 //                        Log.d("test1", it.itemId.toString())
-                            Toast.makeText(baseContext, "ini home tech", Toast.LENGTH_SHORT).show()
+//                            Toast.makeText(baseContext, "ini home tech", Toast.LENGTH_SHORT).show()
                             changeFragment(TechnicianHomeFragment())
                         }
 
                         R.id.nav_profile -> {
-                            Toast.makeText(applicationContext, "ini profile", Toast.LENGTH_SHORT)
-                                .show()
+//                            Toast.makeText(applicationContext, "ini profile", Toast.LENGTH_SHORT)
+//                                .show()
                             changeFragment(TechnicianProfileFragment())
                         }
                         R.id.nav_delete -> {
-                            Toast.makeText(applicationContext, "ini delete", Toast.LENGTH_SHORT)
-                                .show()
+//                            Toast.makeText(applicationContext, "ini delete", Toast.LENGTH_SHORT)
+//                                .show()
                         }
                         R.id.nav_logout -> {
-                            Toast.makeText(applicationContext, "ini log out", Toast.LENGTH_SHORT)
-                                .show()
+//                            Toast.makeText(applicationContext, "ini log out", Toast.LENGTH_SHORT)
+//                                .show()
 //                        val loginIntent = Intent(this, LoginAsActivity::class.java)
 //                        startActivity(loginIntent)
                         }
@@ -103,26 +103,25 @@ class MainActivity : AppCompatActivity() {
                     when (it.itemId) {
                         R.id.nav_home -> {
 //                        Log.d("test1", it.itemId.toString())
-                            Toast.makeText(baseContext, "ini home", Toast.LENGTH_SHORT).show()
+//                            Toast.makeText(baseContext, "ini home", Toast.LENGTH_SHORT).show()
                             changeFragment(CustomerHomeFragment())
                         }
                         R.id.nav_order -> {
 //                        Log.d("test1", it.itemId.toString())
-                            Toast.makeText(baseContext, "ini oder", Toast.LENGTH_SHORT).show()
+//                            Toast.makeText(baseContext, "ini oder", Toast.LENGTH_SHORT).show()
                             changeFragment(CustomerOrdersFragment())
                         }
                         R.id.nav_profile -> {
-                            Toast.makeText(applicationContext, "ini profile", Toast.LENGTH_SHORT)
-                                .show()
+//                            Toast.makeText(applicationContext, "ini profile", Toast.LENGTH_SHORT).show()
                             changeFragment(CustomerProfileFragment())
                         }
                         R.id.nav_delete -> {
-                            Toast.makeText(applicationContext, "ini delete", Toast.LENGTH_SHORT)
-                                .show()
+//                            Toast.makeText(applicationContext, "ini delete", Toast.LENGTH_SHORT)
+//                                .show()
                         }
                         R.id.nav_logout -> {
-                            Toast.makeText(applicationContext, "ini log out", Toast.LENGTH_SHORT)
-                                .show()
+//                            Toast.makeText(applicationContext, "ini log out", Toast.LENGTH_SHORT)
+//                                .show()
                             val loginIntent = Intent(this@MainActivity, LoginAsActivity::class.java)
                             startActivity(loginIntent)
                             finish()

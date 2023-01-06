@@ -27,7 +27,7 @@ class TechnicianProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        Toast.makeText(context, "Login ID: $loginTechId", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(context, "Login ID: $loginTechId", Toast.LENGTH_SHORT).show()
         binding = FragmentTechnicianProfileBinding.inflate(layoutInflater)
         viewModel = ViewModelProvider(this@TechnicianProfileFragment).get(TechnicianViewModel::class.java)
         viewModel.getTechnicianDetails(loginTechId)
@@ -35,7 +35,7 @@ class TechnicianProfileFragment : Fragment() {
 
         viewModel.technicianDetails.observe(viewLifecycleOwner, Observer{
                 response ->
-            Toast.makeText(context, "name" +response.t_name, Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "name" +response.t_name, Toast.LENGTH_SHORT).show()
             binding.nameTech.apply{
                 text = response.t_name
             }

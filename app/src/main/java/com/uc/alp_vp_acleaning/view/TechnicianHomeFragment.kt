@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.core.view.isEmpty
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,8 +24,10 @@ import com.uc.alp_vp_acleaning.adapter.TechnicianAdapter
 import com.uc.alp_vp_acleaning.databinding.FragmentTechnicianHomeBinding
 import com.uc.alp_vp_acleaning.model.Technician
 import com.uc.alp_vp_acleaning.model.Order
+import com.uc.alp_vp_acleaning.model.TechnicianItem1
 import com.uc.alp_vp_acleaning.view.MainActivity.Companion.loginTechId
 import com.uc.alp_vp_acleaning.viewmodel.OrderViewModel
+import com.uc.alp_vp_acleaning.viewmodel.TechnicianViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,30 +37,35 @@ class TechnicianHomeFragment : Fragment() {
     private lateinit var viewModelTechOrder: OrderViewModel
     private lateinit var adapterTechOrder: OrderTechAdapter
     private lateinit var adapterTechnician: TechnicianAdapter
+    private lateinit var viewModel: TechnicianViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentTechnicianHomeBinding.inflate(layoutInflater)
-//        binding.nmTechWelcome.text =
+        viewModel = ViewModelProvider(this)[TechnicianViewModel::class.java]
+        viewModel.getTechnicianDetails(loginTechId)
+        viewModel.technicianDetails.observe(viewLifecycleOwner, Observer { response ->
+            binding.nmTechWelcome.text = response.t_name
+        })
         var status = ""
         notif()
         binding.pendingRb.setOnClickListener {
             status = "pending"
-            Toast.makeText(context, "ini pending", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "ini pending", Toast.LENGTH_SHORT).show()
             filter(status)
 
 
         }
         binding.ongoingRb.setOnClickListener {
             status = "on-going"
-            Toast.makeText(context, "ini ongoing", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "ini ongoing", Toast.LENGTH_SHORT).show()
             filter(status)
         }
         binding.completedRb.setOnClickListener {
             status = "completed"
-            Toast.makeText(context, "ini completed", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "ini completed", Toast.LENGTH_SHORT).show()
             filter(status)
         }
 
@@ -74,6 +82,7 @@ class TechnicianHomeFragment : Fragment() {
 //            Log.e("Customer Order", response)
             if (response.isEmpty()) {
                 Toast.makeText(context, "order masih kosong", Toast.LENGTH_SHORT).show()
+//                binding.listOrder.isEmpty()
             } else {
                 binding.listOrder.layoutManager = LinearLayoutManager(context)
                 adapterTechOrder = OrderTechAdapter(response)

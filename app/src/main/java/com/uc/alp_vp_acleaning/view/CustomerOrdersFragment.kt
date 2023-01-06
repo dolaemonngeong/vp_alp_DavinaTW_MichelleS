@@ -41,17 +41,17 @@ class CustomerOrdersFragment : Fragment() {
         var status = ""
         binding.pendingRb.setOnClickListener {
             status="pending"
-            Toast.makeText(context, "ini pending", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "ini pending", Toast.LENGTH_SHORT).show()
             filter(status)
         }
         binding.ongoingRb.setOnClickListener {
             status = "on-going"
-            Toast.makeText(context, "ini ongoing", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "ini ongoing", Toast.LENGTH_SHORT).show()
             filter(status)
         }
         binding.completedRb.setOnClickListener {
             status = "completed"
-            Toast.makeText(context, "ini completed", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "ini completed", Toast.LENGTH_SHORT).show()
             filter(status)
         }
 
