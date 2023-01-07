@@ -12,7 +12,6 @@ import com.uc.alp_vp_acleaning.model.LoginRequestTech
 import com.uc.alp_vp_acleaning.model.LoginResponse
 import com.uc.alp_vp_acleaning.repository.LoginRepository
 import com.uc.alp_vp_acleaning.viewmodel.CustomerViewModel
-import com.uc.alp_vp_acleaning.viewmodel.LoginViewModel
 import com.uc.alp_vp_acleaning.viewmodel.TechnicianViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

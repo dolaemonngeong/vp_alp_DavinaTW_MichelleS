@@ -102,15 +102,15 @@ interface EndPointApi {
 //        ...
 //    }: Response<... >
 
-    @PATCH("/customer/{c_id}")
-    suspend fun updateCustomer(
-        @Body customer: Customer
-    ): Response<Customer>
+//    @PATCH("/customer/{c_id}")
+//    suspend fun updateCustomer(
+//        @Body customer: Customer
+//    ): Response<Customer>
 
-    @PUT("/customer/{c_id")
-    suspend fun deleteCustomer(
-        @Path("c_id") c_id: Int
-    ): Response<Customer>
+//    @PUT("/customer/{c_id")
+//    suspend fun deleteCustomer(
+//        @Path("c_id") c_id: Int
+//    ): Response<Customer>
 
     @GET("/customer-order/{c_id}/{status}")
     suspend fun orderCustomer(
